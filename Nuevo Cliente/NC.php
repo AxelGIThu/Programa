@@ -15,21 +15,19 @@
         <br><br><br><br><br><br><br>
         <form action="NC.php" method="post" class="datos">
         <br>
-        <!--
-        <label for="empresa"></label>
-        <input type="number" name="empresa" id="empresa">       
+        
+        <label for="CUIT">CUIT: </label>
+        <input type="number" name="CUIT" id="CUIT">       
         <br><br>
-        -->
 
-        <label for="nombre">Nombre (Completo)</label>
+        <label for="nombre">Nombre (Completo): </label>
         <input type="text" name="nombre" id="nombre"> 
         <br><br>       
 
         <label for="IVA">IVA: </label>
         <select name="IVA" id="IVA">
-            <option value="inscripto">Inscripto</option>
-            <option value="no inscripto">No Inscripto</option>
-            <option value="monotributista">Monotributista</option>
+            <option value="1">Inscripto</option>
+            <option value="2">Monotributista</option>
         </select>  
         <br><br>
 
@@ -64,8 +62,9 @@ $nombre="";
 $IVA="";
 
 if($_POST) {
+    $CUIT = $_POST['CUIT'];
     $nombre=$_POST['nombre'];
-    $IVA=$_POST['IVA'];
+    $IVA =  $_POST['IVA'];
 
     $nuevaBD=mysqli_query($coneccion, "CREATE TABLE $nombre (comprobante date, procesamiento date, TComprobante varchar(2), TImputacion varchar(2), 
     CUIT varchar(11), nombre text(100), neto21 decimal(10.2), IVA21 decimal(10.2), neto10y5 decimal(10.2), IVA10y5 decimal(10.2), 
@@ -76,6 +75,9 @@ if($_POST) {
     Neto 27; iva 27; Conceptos No Gravados; Percepción de IVA; Percepción DGR, 
     Percepción Municipalidad y Total
     */
+
+    /* Tipo de imputación: Fuente de gasto o ganancia; verduleria, gasolineria, flete, etc */
+
     mysqli_close($coneccion);
 }
 
