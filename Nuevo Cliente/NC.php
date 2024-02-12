@@ -66,7 +66,7 @@ if($_POST) {
     $nombre=$_POST['nombre'];
     $IVA =  $_POST['IVA'];
 
-    $nuevaBD=mysqli_query($coneccion, "CREATE TABLE $nombre (comprobante date, procesamiento date, TComprobante varchar(2), TImputacion varchar(2), 
+    mysqli_query($coneccion, "CREATE TABLE $nombre (comprobante date, procesamiento date, TComprobante varchar(2), TImputacion varchar(2), 
     CUIT varchar(11), nombre text(100), neto21 decimal(10.2), IVA21 decimal(10.2), neto10y5 decimal(10.2), IVA10y5 decimal(10.2), 
     neto27 decimal(10.2), IVA27 decimal(10.2), ConcNoAgra decimal(10.2), PercIVA decimal(10.2), PercDGR decimal(10.2), 
     PercMunicipalidad decimal(10.2), total decimal(10.2))");
