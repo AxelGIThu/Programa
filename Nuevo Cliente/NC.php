@@ -26,8 +26,8 @@
 
         <label for="IVA">IVA: </label>
         <select name="IVA" id="IVA">
-            <option value="1">Inscripto</option>
-            <option value="2">Monotributista</option>
+            <option value="inscripto">Inscripto</option>
+            <option value="monotributista">Monotributista</option>
         </select>  
         <br><br>
 
@@ -60,13 +60,21 @@ $coneccion=mysqli_connect($mac, $usuar, $pass, $bas);
 
 $nombre="";
 $IVA="";
+$count=(-1);
 
 if($_POST) {
     $CUIT = $_POST['CUIT'];
     $nombre=$_POST['nombre'];
     $IVA =  $_POST['IVA'];
 
-    mysqli_query($coneccion, "CREATE TABLE $nombre (comprobante date, procesamiento date, TComprobante varchar(2), TImputacion varchar(2), 
+    $showt=mysqli_query($coneccion, "SHOW TABLES");
+    while($db=mysqli_fetch_array($showt)) {
+        $count = $count+1;
+	}
+
+    $count= "T$count";
+
+    mysqli_query($coneccion, "CREATE TABLE $count (comprobante date, procesamiento date, TComprobante varchar(2), TImputacion varchar(2), 
     CUIT varchar(11), nombre text(100), neto21 decimal(10.2), IVA21 decimal(10.2), neto10y5 decimal(10.2), IVA10y5 decimal(10.2), 
     neto27 decimal(10.2), IVA27 decimal(10.2), ConcNoAgra decimal(10.2), PercIVA decimal(10.2), PercDGR decimal(10.2), 
     PercMunicipalidad decimal(10.2), total decimal(10.2))");
@@ -78,7 +86,12 @@ if($_POST) {
 
     /* Tipo de imputación: Fuente de gasto o ganancia; verduleria, gasolineria, flete, etc */
 
+    mysqli_query($coneccion, "INSERT INTO `clientes` (`IDCliente`, `nombre`, `CUIT`, `IVA`) VALUES ('', '$nombre', '$CUIT', '$IVA');");
+
+    mysqli_query($coneccion, "");
+
     mysqli_close($coneccion);
+
 }
 
 ?>
