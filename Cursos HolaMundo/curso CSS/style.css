@@ -1,0 +1,270 @@
+/* Referencia a una ID */
+
+#titulo {
+    color: tomato;
+}
+
+/* Referencia a una clase ("texto")
+afecta a todas las etiquetas con la clase texto */
+
+.texto {
+    color: slateblue;
+}
+
+/* Referencia a una clase que sea un parrafo ("p")
+se puede referenciar a la mayoria de etiquetas
+en HTML */
+
+p.texto {
+    color: slateblue;
+}
+
+/* Los estilos son destructivos según el orden
+el de arriba va a ser destruido por el de abajo
+si cumple las condiciones */
+
+p.especial {
+    color: mediumaquamarine;
+}
+
+/* CSS identifica las clases según el texto
+por ejemplo; class="yo soy especial" entraía 
+en la clase "especial".
+Si fuera class="texto especial" y hubieran parametros puestos
+para las clases "texto" y "especial" la que este mas abajo en el css
+destruirá a la que este mas arriba por la misma razón. */
+
+div p {
+    color: aqua;
+}
+
+div h2, div h3 {
+    color: brown;
+}
+
+/* El "*" no destruye los parametros YA DEFINIDOS.
+Los no definidos seran afectados */
+
+* {
+    font-size: 24px;
+    /* color: black; */
+}
+
+/*
+.color {
+    color: #ff0000;
+}
+
+.color {
+    color: rgb(red, green, blue);
+}
+
+*/
+
+.color {
+    /*   ancho color  forma*/
+/* border: 5px black dotted; */
+
+    /*
+    Formas:
+        dotted
+        dashed
+        solid
+        double
+        groove
+        ridge
+        inset
+        outset
+        none
+        hidden
+    */
+
+    border-style: solid; /* Forma */
+    border-color: blue;
+    border-radius: 5px; /* Redondea los bordes */
+    border-width: 5px; /* Ancho */
+
+    /* Se pueden usar tambien los centimetros (cm), pulgadas(in), 
+    picas (pc) y puntos (pt) en vez de pixeles
+    Tambien se puede usar los "em" que son 
+    el doble del tamaño de la fuenta 
+    o rem que es lo mismo a em pero con referencia a la raiz (<html>)
+    lo cual suele ser 16px a no ser que se cambie el tamaño
+    de la fuente del <html> lo cual puede ser hecho por 
+    modificador general (*).
+    Ej: 
+    * {
+        font-size: 24px;
+    }*/
+
+}
+
+#fondo {
+    /*background-color: red;*/
+    /*                    color, color, color, transparencia*/
+/*  background-color: rgba(red, green, blue, alpha);*/
+    background-color: rgba(255, 0, 0);
+    /* Le da transparencia al elemento completo*/
+    opacity: 0.3;
+    /* se puede usar "" o '' */
+    background-image: url('img/gato.jpg');
+    height: 400px;
+    
+    background-repeat: repeat-y;
+    /* background-position: center top; */ /* se puede poner directamente en la imagen*/
+    background: red url(img/gato.jpg) repeat-y center bottom / 300px 200px; /* Solo toma el background-size si esta abajo */
+    /* background-size: 300px 200px; */ /* se puede poner directamente en la imagen*/
+    /*
+    background-size:
+        auto
+        cover
+        contain
+        Xpx Xpx
+    
+    backgroung-repeat:
+        no-repeat
+        repeat
+        repeat-x (eje x)
+        repeat-y (eje y)
+    
+    background-position:
+        left    top
+        center  center
+        right   bottom
+    */
+
+}
+
+.margen {
+    background-color: chocolate;
+    /*      top right bottom left*/
+    margin: 15px /*20px 25px 30px*/;
+    /* Si en padding se le dan 3 medidas el orden sera superior, horizontal, inferior */
+    padding: 30px /*25px 20px*/ 15px;
+    border: solid 1px black;
+    height: 100px;
+    width: 200px;
+    overflow: hidden;
+    /* 
+    overflow:
+        visible (predeterminado)
+        hidden (esconde lo que no entre en el cuadro)
+        scroll (añade barras)
+    */
+    outline: 1px solid red;
+}
+
+.text {
+    font-family: Protest Guerrilla, Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    text-decoration: none; /* El resto de las opciones salen en el autocompletado */
+    text-shadow: 3px 5px 5px blue;
+}
+
+a:link {
+    color: blueviolet;
+}
+
+a:visited {
+    color: gray;
+}
+
+a:hover {
+    color: yellow;
+}
+
+a:active {
+    color: red;
+}
+
+ul {
+    background-color: cyan;
+    /* list-style: none; */
+    /* padding-left: 0; */
+    list-style-position: inside;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: solid 1px black;
+    padding: 5px;
+}
+
+th {
+    background-color: tomato;
+    color: white;
+    text-align: left;
+}
+
+tr:nth-child(even) {
+    background-color: #eee;
+    /* nth-child(even) selecciona en tablas "uno si uno no..." */
+}
+
+tr:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+span {
+    display: block; /*<-- los span se ponen una linea mas abajo / se separan */
+    /* display: none; <-- los span no se muestran */
+    /* visibility: hidden; <-- los span no se muestran */
+    background-color: red;
+    max-width: 300px;
+}
+
+.inline {
+    display: inline; /* Los divs no se separan del resto del texto (con inline) */
+}
+
+#position {
+    position: relative; /* Sticky sirve para menus facheros */
+    left: 20px;
+    /* top: 25px; */
+}
+
+.left {
+    float: left;
+    width: 200px;
+    height: 200px;
+}
+
+.right {
+    float: right;
+    width: 100px;
+}
+
+.container {
+    height: 200px;
+}
+
+.card {
+    border: solid 0px #ddd;
+    border-radius: 5px;
+    margin: 0;
+    padding: 10px 0px;
+    width: 33.3%;
+}
+
+.inline-block {
+    display: inline-block; 
+    /* Los valores de HTML con inline 
+    no se les puede asignar 
+    valores de width ni height. 
+    Por eso se utiliza el inline-block */
+    height: 55px;
+    background-color: red;
+}
+
+.center {
+    padding: 50px 0px;
+    text-align: center;
+    width: 200px;
+    margin: 0 auto;
+    background-color: aqua;
+}
