@@ -7,7 +7,7 @@
 <body>
 
     <header>
-        <h1>Generar Facturas</h1>
+        <h1>Cargar Facturas</h1>
     </header>
     
     <section>
@@ -46,7 +46,7 @@
             <br>
             <br>
             
-            <label for="TComprobante">Tipo de Liquidacion: </label>
+            <label for="TComprobante">Tipo de Comprobante: </label>
             <input type="text" name="TComprobante" id="TComprobante">
             <br>
             <br>
