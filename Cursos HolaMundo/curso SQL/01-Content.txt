@@ -1,0 +1,24 @@
+Create database
+
+Show databases
+
+use
+
+create table
+
+Alter table
+
+Show create table
+
+Insert into
+
+Select * from
+
+Delete from
+
+Update
+
+Select min/max
+
+Select "campo1", "campo2" from
+Select as
