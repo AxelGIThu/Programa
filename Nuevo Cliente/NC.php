@@ -78,7 +78,7 @@ if($_POST) {
     mysqli_query($coneccion, "CREATE TABLE $count (NFactura int AUTO_INCREMENT PRIMARY KEY ,comprobante date, procesamiento date, TComprobante varchar(2), TImputacion varchar(2), 
     CUIT varchar(11), nombre text(100), neto21 decimal(10.2), IVA21 decimal(10.2), neto10y5 decimal(10.2), IVA10y5 decimal(10.2), 
     neto27 decimal(10.2), IVA27 decimal(10.2), ConcNoAgra decimal(10.2), PercIVA decimal(10.2), PercDGR decimal(10.2), 
-    PercMunicipalidad decimal(10.2), total decimal(10.2))");
+    PercMuni decimal(10.2), total decimal(10.2))");
     /* Orden: Fecha de factura; fecha de procesamiento; tipo de comprobante; tipo de imputación; 
     CUIT; Apellido y Nombre o Razón social; Neto 21; iva 21; Neto 10.5; iva 10.5; 
     Neto 27; iva 27; Conceptos No Gravados; Percepción de IVA; Percepción DGR, 

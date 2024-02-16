@@ -23,30 +23,10 @@ $bas=""; // nombre de la bd
 
         <article>
 
-            <table border="1" id="tablaID">
-                <th>ID</th>
-                <th>Nombre</th>
-
-                <?php
-                
-                $coneccion=mysqli_connect($mac, $usuar, $pass, 'clientes');
-                
-
-                
-                mysqli_close($coneccion);
-
-                ?>
-
-                <!-- <tr>
-                    <td></td><td></td>
-                </tr> -->
-
-            </table>
-
             <br>
             <form action="GF.php" method="post" class="datos">
-            <label for="empresa">Empresa: </label>
-            <input type="number" name="empresa" id="empresa">
+            <label for="ID">ID: </label>
+            <input type="number" name="ID" id="ID">
             <br>
             <br>
 
@@ -65,8 +45,8 @@ $bas=""; // nombre de la bd
             <br>
             <br> -->
 
-            <label for="movimiento">Movimiento: </label>
-            <input type="text" name="movimiento" id="movimiento">
+            <label for="TImputacion">TImputacion: </label>
+            <input type="text" name="TImputacion" id="TImputacion">
             <br>
             <br>
             
@@ -98,6 +78,39 @@ $bas=""; // nombre de la bd
             <input type="submit" value="Generar">
 
             </form>
+
+            <h2>Indice Clientes</h2>
+
+            <table border="1">
+                <th>ID</th>
+                <th>Nombre</th>
+
+                <?php
+                
+                $coneccion=mysqli_connect($mac, $usuar, $pass, 'libro');
+                
+                $tabla=mysqli_query($coneccion, "SELECT * FROM clientes");
+
+                ?>
+                <tbody>
+                <?php
+                
+                while ($datos=mysqli_fetch_array($tabla)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $datos['IDCliente'];?></td>
+                        <td><?php echo $datos['nombre'];?></td>
+                    </tr>
+                <?php
+                }
+                
+
+                mysqli_close($coneccion);
+
+                ?>
+                </tbody>
+
+            </table>
             
         </article>
     </section>
@@ -117,11 +130,11 @@ $bas=""; // nombre de la bd
 <?php
 $coneccion=mysqli_connect($mac, $usuar, $pass, $bas);
 
-$empresa="";
+$ID="";
 $comprobante="";
 $procesamiento="";
 // $IVA="";
-$movimiento="";
+$TImputacion="";
 $TLiquidacion="";
 $TComprobante="";
 $NComprobante="";
@@ -129,11 +142,11 @@ $NComprobante="";
 $total="";
 
 if ($_POST) {
-    $empresa=$_POST['empresa'];
+    $ID=$_POST['ID'];
     $comprobante=$_POST['comprobante'];
     $procesamiento=$_POST['procesamiento'];
     // $IVA=$_POST['IVA'];
-    $movimiento=$_POST['movimiento'];
+    $TImputacion=$_POST['TImputacion'];
     $TLiquidacion=$_POST['TLiquidacion'];
     $TComprobante=$_POST['TComprobante'];
     $NComprobante=$_POST['NComprobante'];
@@ -141,9 +154,10 @@ if ($_POST) {
     $total=$_POST['total'];
 
     // mysqli_query($coneccion, "INSERT INTO ")
-    // Preguntarle a papa con que variable se identifica al cliente
+    // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
+    // Completar los select e IF's con papá
 
-    mysqli_query($coneccion, "INSERT INTO $tabla() VALUES ($comprobante, $procesamiento,)");
+    mysqli_query($coneccion, "INSERT INTO $tabla('NFactura', 'comprobante', 'procesamiento', 'TComprobante', 'Timputacion', 'CUIT', 'nombre', 'neto21', 'IVA21', 'neto10y5', 'IVA10y5', 'neto27', 'IVA27', 'ConcNoAgra', 'PercDGR', 'PercMuni', 'total') VALUES ('', $comprobante, $procesamiento, $TComprobante, $TLiquidacion, $TImputacion, $CUIT, $nombre, $neto21, $IVA21, $neto10y5, $IVA10y5, $neto27, $IVA27, $ConcNoAgra, $PercIVA, $PercDGR, $PercMuni, $total)");
 
 }
 
