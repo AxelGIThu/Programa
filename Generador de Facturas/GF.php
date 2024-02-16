@@ -23,10 +23,26 @@ $bas=""; // nombre de la bd
 
         <article>
 
-            <br>
+            <br><br><br><br><br>
             <form action="GF.php" method="post" class="datos">
+
             <label for="ID">ID: </label>
-            <input type="number" name="ID" id="ID">
+            <select name="ID" id="ID">
+            <?php
+        
+            $coneccion = mysqli_connect('localhost', 'root', '', 'libro');
+            $tabla = mysqli_query($coneccion, "SELECT * FROM clientes");
+
+            while ($datos = mysqli_fetch_array($tabla)) {
+                ?>
+                    <option value="<?php $datos['IDCliente']?>"><?php  echo $datos['IDCliente'] . " - " . $datos['nombre'] ?></option>
+                <?php
+            }
+
+            mysqli_close($coneccion);
+
+            ?>
+            </select>
             <br>
             <br>
 
@@ -40,23 +56,31 @@ $bas=""; // nombre de la bd
             <br>
             <br>
             
-            <!-- <label for="IVA">IVA: </label>
-            <input type="text" name="IVA" id="IVA">
+            <label for="movimiento">Movimiento: </label>
+            <select name="movimiento" id="movimiento">
+                <?php include 'opcionesMov.php';?>
+            </select>
             <br>
-            <br> -->
-
+            <br>
+            
             <label for="TImputacion">TImputacion: </label>
-            <input type="text" name="TImputacion" id="TImputacion">
+            <select name="TImputacion" id="TImputacion">
+                <?php include 'opcionesTImp.php';?>
+            </select>
             <br>
             <br>
-            
+
             <label for="TLiquidacion">Tipo de Liquidacion: </label>
-            <input type="text" name="TLiquidacion" id="TLiquidacion">
+            <select name="TLiquidacion" id="TLiquidacion">
+                <?php include 'opcionesTLiq.php';?>
+            </select>
             <br>
             <br>
-            
+
             <label for="TComprobante">Tipo de Comprobante: </label>
-            <input type="text" name="TComprobante" id="TComprobante">
+            <select name="TComprobante" id="TComprobante">
+                <?php include 'opcionesTCom.php'; ?>
+            </select>
             <br>
             <br>
             
@@ -64,11 +88,6 @@ $bas=""; // nombre de la bd
             <input type="number" name="NComprobante" id="NComprobante">
             <br>
             <br>
-            
-            <!-- <label for="CUIT">CUIT: </label>
-            <input type="number" name="CUIT" id="CUIT">
-            <br>
-            <br> -->
             
             <label for="total">Total: </label>
             <input type="number" name="total" id="total">
@@ -78,40 +97,7 @@ $bas=""; // nombre de la bd
             <input type="submit" value="Generar">
 
             </form>
-
-            <h2>Indice Clientes</h2>
-
-            <table border="1">
-                <th>ID</th>
-                <th>Nombre</th>
-
-                <?php
-                
-                $coneccion=mysqli_connect($mac, $usuar, $pass, 'libro');
-                
-                $tabla=mysqli_query($coneccion, "SELECT * FROM clientes");
-
-                ?>
-                <tbody>
-                <?php
-                
-                while ($datos=mysqli_fetch_array($tabla)) {
-                    ?>
-                    <tr>
-                        <td><?php echo $datos['IDCliente'];?></td>
-                        <td><?php echo $datos['nombre'];?></td>
-                    </tr>
-                <?php
-                }
-                
-
-                mysqli_close($coneccion);
-
-                ?>
-                </tbody>
-
-            </table>
-            
+            <br><br><br>
         </article>
     </section>
 
@@ -128,7 +114,7 @@ $bas=""; // nombre de la bd
 </html>
 
 <?php
-$coneccion=mysqli_connect($mac, $usuar, $pass, $bas);
+$coneccion=mysqli_connect($mac, $usuar, $pass, 'libro');
 
 $ID="";
 $comprobante="";
@@ -142,22 +128,26 @@ $NComprobante="";
 $total="";
 
 if ($_POST) {
+
+include 'definirVariables.php';
+$tabla=mysqli_query($coneccion, "SELECT * FROM clientes");
     $ID=$_POST['ID'];
-    $comprobante=$_POST['comprobante'];
-    $procesamiento=$_POST['procesamiento'];
-    // $IVA=$_POST['IVA'];
-    $TImputacion=$_POST['TImputacion'];
-    $TLiquidacion=$_POST['TLiquidacion'];
-    $TComprobante=$_POST['TComprobante'];
-    $NComprobante=$_POST['NComprobante'];
-    // $CUIT=$_POST['CUIT'];
-    $total=$_POST['total'];
+    while ($datos=mysqli_fetch_array($tabla)) {
+        
+        if ($datos['IDCliente'] == $ID) {
+            
+        // $tablaT = $datos['IDCliente'];
+        $CUIT = $datos['CUIT'];
+        $nombre = $datos['nombre'];
+        $IVA = $datos['IVA'];
+    }
+}
 
     // mysqli_query($coneccion, "INSERT INTO ")
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
     // Completar los select e IF's con papá
-
-    mysqli_query($coneccion, "INSERT INTO $tabla('NFactura', 'comprobante', 'procesamiento', 'TComprobante', 'Timputacion', 'CUIT', 'nombre', 'neto21', 'IVA21', 'neto10y5', 'IVA10y5', 'neto27', 'IVA27', 'ConcNoAgra', 'PercDGR', 'PercMuni', 'total') VALUES ('', $comprobante, $procesamiento, $TComprobante, $TLiquidacion, $TImputacion, $CUIT, $nombre, $neto21, $IVA21, $neto10y5, $IVA10y5, $neto27, $IVA27, $ConcNoAgra, $PercIVA, $PercDGR, $PercMuni, $total)");
+print($tablaT."a");
+    //mysqli_query($coneccion, "INSERT INTO $tablaT('NFactura', 'comprobante', 'procesamiento', 'TComprobante', 'movimiento', 'Timputacion', 'CUIT', 'nombre', 'neto21', 'IVA21', 'neto10y5', 'IVA10y5', 'neto27', 'IVA27', 'ConcNoAgra', 'PercDGR', 'PercMuni', 'total') VALUES ('', $comprobante, $procesamiento, $TComprobante, $movimiento, $TLiquidacion, $TImputacion, $CUIT, $nombre, $neto21, $IVA21, $neto10y5, $IVA10y5, $neto27, $IVA27, $ConcNoAgra, $PercIVA, $PercDGR, $PercMuni, $total)");
 
 }
 

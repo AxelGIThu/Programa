@@ -1,0 +1,9 @@
+<option value="1">1 - Ticket</option>
+<option value="2">2 - Factura</option>
+<option value="3">3 - N.Credito</option>
+<option value="4">4 - N.Debito</option>
+<option value="5">5 - Recibo</option>
+<option value="6">6 - Liquidaciones</option>
+<option value="7">7 - Carta de Porte</option>
+<option value="8">8 - Sin Comprobantes</option>
+<option value="9">9 - Retencion</option>
