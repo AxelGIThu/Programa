@@ -1,3 +1,12 @@
+<?php
+
+$mac="localhost"; // servidor
+$usuar="root"; // permisos
+$pass=""; // contraseña
+$bas=""; // nombre de la bd
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +22,26 @@
     <section>
 
         <article>
+
+            <table border="1" id="tablaID">
+                <th>ID</th>
+                <th>Nombre</th>
+
+                <?php
+                
+                $coneccion=mysqli_connect($mac, $usuar, $pass, 'clientes');
+                
+
+                
+                mysqli_close($coneccion);
+
+                ?>
+
+                <!-- <tr>
+                    <td></td><td></td>
+                </tr> -->
+
+            </table>
 
             <br>
             <form action="GF.php" method="post" class="datos">
@@ -31,10 +60,10 @@
             <br>
             <br>
             
-            <label for="IVA">IVA: </label>
+            <!-- <label for="IVA">IVA: </label>
             <input type="text" name="IVA" id="IVA">
             <br>
-            <br>
+            <br> -->
 
             <label for="movimiento">Movimiento: </label>
             <input type="text" name="movimiento" id="movimiento">
@@ -56,10 +85,10 @@
             <br>
             <br>
             
-            <label for="CUIT">CUIT: </label>
+            <!-- <label for="CUIT">CUIT: </label>
             <input type="number" name="CUIT" id="CUIT">
             <br>
-            <br>
+            <br> -->
             
             <label for="total">Total: </label>
             <input type="number" name="total" id="total">
@@ -86,38 +115,35 @@
 </html>
 
 <?php
-
-$mac="localhost"; // servidor
-$usuar="root"; // permisos
-$pass=""; // contraseña
-$bas=""; // nombre de la bd
 $coneccion=mysqli_connect($mac, $usuar, $pass, $bas);
 
 $empresa="";
 $comprobante="";
 $procesamiento="";
-$IVA="";
+// $IVA="";
 $movimiento="";
 $TLiquidacion="";
 $TComprobante="";
 $NComprobante="";
-$CUIT="";
+// $CUIT="";
 $total="";
 
 if ($_POST) {
     $empresa=$_POST['empresa'];
     $comprobante=$_POST['comprobante'];
     $procesamiento=$_POST['procesamiento'];
-    $IVA=$_POST['IVA'];
+    // $IVA=$_POST['IVA'];
     $movimiento=$_POST['movimiento'];
     $TLiquidacion=$_POST['TLiquidacion'];
     $TComprobante=$_POST['TComprobante'];
     $NComprobante=$_POST['NComprobante'];
-    $CUIT=$_POST['CUIT'];
+    // $CUIT=$_POST['CUIT'];
     $total=$_POST['total'];
 
     // mysqli_query($coneccion, "INSERT INTO ")
     // Preguntarle a papa con que variable se identifica al cliente
+
+    mysqli_query($coneccion, "INSERT INTO $tabla() VALUES ($comprobante, $procesamiento,)");
 
 }
 
