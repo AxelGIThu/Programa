@@ -116,32 +116,13 @@ $bas=""; // nombre de la bd
 <?php
 $coneccion=mysqli_connect($mac, $usuar, $pass, 'libro');
 
-$ID="";
-$comprobante="";
-$procesamiento="";
-// $IVA="";
-$TImputacion="";
-$TLiquidacion="";
-$TComprobante="";
-$NComprobante="";
-// $CUIT="";
-$total="";
 
 if ($_POST) {
 
-include 'definirVariables.php';
-$tabla=mysqli_query($coneccion, "SELECT * FROM clientes");
-    $ID=$_POST['ID'];
-    while ($datos=mysqli_fetch_array($tabla)) {
-        
-        if ($datos['IDCliente'] == $ID) {
-            
-        // $tablaT = $datos['IDCliente'];
-        $CUIT = $datos['CUIT'];
-        $nombre = $datos['nombre'];
-        $IVA = $datos['IVA'];
-    }
-}
+    include 'definirVariables.php';
+    
+    print($ID);
+    // $tablaT = "t" . $ID;
 
     // mysqli_query($coneccion, "INSERT INTO ")
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente

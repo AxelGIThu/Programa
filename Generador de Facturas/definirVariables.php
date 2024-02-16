@@ -17,6 +17,7 @@ $PercIVA="";
 $PercDGR="";
 $PercMuni="";
 
+$ID=$_POST['ID'];
 $comprobante=$_POST['comprobante'];
 $procesamiento=$_POST['procesamiento'];
 $movimiento=$_POST['movimiento'];
