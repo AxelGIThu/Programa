@@ -1,2 +1,2 @@
-<option value="1">1 - Compras</option>
-<option value="2">2 - Ventas</option>
+<option value="Compra">1 - Compras</option>
+<option value="Venta">2 - Ventas</option>

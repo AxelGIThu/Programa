@@ -35,7 +35,7 @@ $bas=""; // nombre de la bd
 
             while ($datos = mysqli_fetch_array($tabla)) {
                 ?>
-                    <option value="<?php $datos['IDCliente']?>"><?php  echo $datos['IDCliente'] . " - " . $datos['nombre'] ?></option>
+                    <option value="<?php echo $datos['IDCliente'];?>"><?php  echo $datos['IDCliente'] . " - " . $datos['nombre'] ?></option>
                 <?php
             }
 
@@ -63,7 +63,7 @@ $bas=""; // nombre de la bd
             <br>
             <br>
             
-            <label for="TImputacion">TImputacion: </label>
+            <label for="TImputacion">Tipo de Imputacion: </label>
             <select name="TImputacion" id="TImputacion">
                 <?php include 'opcionesTImp.php';?>
             </select>
@@ -120,15 +120,23 @@ $coneccion=mysqli_connect($mac, $usuar, $pass, 'libro');
 if ($_POST) {
 
     include 'definirVariables.php';
-    
-    print($ID);
-    // $tablaT = "t" . $ID;
 
-    // mysqli_query($coneccion, "INSERT INTO ")
+    $tabla2 = mysqli_query($coneccion, "SELECT CUIT, nombre, IVA FROM clientes WHERE IDCliente = $ID");
+
+    while ($row = mysqli_fetch_array($tabla2)) {
+        $CUIT = $row[0];
+        $nombre = $row[1];
+        $IVA = $row[2];
+    }
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
-    // Completar los select e IF's con papá
-print($tablaT."a");
-    //mysqli_query($coneccion, "INSERT INTO $tablaT('NFactura', 'comprobante', 'procesamiento', 'TComprobante', 'movimiento', 'Timputacion', 'CUIT', 'nombre', 'neto21', 'IVA21', 'neto10y5', 'IVA10y5', 'neto27', 'IVA27', 'ConcNoAgra', 'PercDGR', 'PercMuni', 'total') VALUES ('', $comprobante, $procesamiento, $TComprobante, $movimiento, $TLiquidacion, $TImputacion, $CUIT, $nombre, $neto21, $IVA21, $neto10y5, $IVA10y5, $neto27, $IVA27, $ConcNoAgra, $PercIVA, $PercDGR, $PercMuni, $total)");
+    // Completar los IF's con papá
+
+
+    print($tablaT);
+
+
+    mysqli_query($coneccion, "INSERT INTO `t1` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `movimiento`, `TLiquidacion`,`Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
+                                                VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$movimiento', '$TLiquidacion', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
 
 }
 
