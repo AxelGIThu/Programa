@@ -49,9 +49,3 @@ footer a:hover {
 section article {
     border: 1cm solid #e1e1e1;
 }
-
-section article table.scroll tbody {
-    height: 1px;
-    overflow-y: auto;
-    overflow-x: scroll;
-}

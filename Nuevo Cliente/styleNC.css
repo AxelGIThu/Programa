@@ -18,6 +18,10 @@ header h1 {
     text-align: center;
 }
 
+section {
+    border: black 1cm solid;
+}
+
 footer {
     background-color: #222;
     padding: 3rem;
@@ -44,10 +48,4 @@ footer a:hover {
 
 .datos {
     text-align: center;
-}
-
-.borde{
-    border: 1cm solid #e1e1e1;
-    width: 95%;
-    height: 411px;
 }

@@ -85,14 +85,26 @@ $bas=""; // nombre de la bd
             <br>
             
             <label for="NComprobante">Numero de Comprobante: </label>
-            <input type="number" name="NComprobante" id="NComprobante">
+            <input type="number" name="NComprobante" id="NComprobante" placeholder="00000-00000000">
+            <br>
+            <br>
+
+            <label for="neto21">Neto 21%: </label>
+            <input type="number" name="neto21" id="neto21">
+            <br>
+            <br>
+
+            <label for="neto10y5">Neto 10,5%: </label>
+            <input type="number" name="neto10y5" id="neto10y5">
             <br>
             <br>
             
-            <label for="total">Total: </label>
-            <input type="number" name="total" id="total">
+            <label for="neto27">Neto 27%: </label>
+            <input type="number" name="neto27" id="neto27">
             <br>
             <br>
+
+
 
             <input type="submit" value="Generar">
 
@@ -106,7 +118,8 @@ $bas=""; // nombre de la bd
         <section>
         <a href="../Index.html">Volver</a>
         <br>
-        <a href="mailto:javieraxel375@gmail.com">Contactame</a>
+        <a href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
+        <br>
         </section>
     </footer>
 

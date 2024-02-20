@@ -9,10 +9,9 @@
     <header>
         <h1>Nuevo Cliente</h1>
     </header>
-
-    <section class="borde">
-
-        <br><br><br><br><br><br><br>
+    
+    <section>
+    <br><br><br><br><br><br><br><br><br><br><br>   
         <form action="NC.php" method="post" class="datos">
         <br>
         
@@ -34,16 +33,17 @@
         <input type="submit" value="Cargar">
         <br><br>
 
-        </form>    
-
+        </form>
+    <br><br><br><br><br><br><br><br><br><br><br>
     </section>
-
+    
     <footer>
         <p>Copyright 2024</p>
         <section>
         <a href="../Index.html">Volver</a>
         <br>
-        <a href="mailto:javieraxel375@gmail.com">Contactame</a>
+        <a href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
+        <br>
         </section>
     </footer>
 
