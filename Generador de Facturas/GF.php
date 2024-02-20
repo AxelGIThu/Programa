@@ -23,7 +23,7 @@ $bas=""; // nombre de la bd
 
         <article>
 
-            <br><br><br><br><br>
+            <br>
             <form action="GF.php" method="post" class="datos">
 
             <label for="ID">ID: </label>
@@ -67,13 +67,8 @@ $bas=""; // nombre de la bd
             <select name="TImputacion" id="TImputacion">
                 <?php include 'opcionesTImp.php';?>
             </select>
-            <br>
-            <br>
-
-            <label for="TLiquidacion">Tipo de Liquidacion: </label>
-            <select name="TLiquidacion" id="TLiquidacion">
-                <?php include 'opcionesTLiq.php';?>
-            </select>
+            <label for="TImputacion2"> Otro: </label>
+            <input type="text" name="TImputacion2" id="TImputacion2">
             <br>
             <br>
 
@@ -85,12 +80,7 @@ $bas=""; // nombre de la bd
             <br>
             
             <label for="NComprobante">Numero de Comprobante: </label>
-            <input type="number" name="NComprobante" id="NComprobante" placeholder="00000-00000000">
-            <br>
-            <br>
-
-            <label for="neto21">Neto 21%: </label>
-            <input type="number" name="neto21" id="neto21">
+            <input type="number" name="NComprobante" id="NComprobante" placeholder="0000000000000">
             <br>
             <br>
 
@@ -98,18 +88,41 @@ $bas=""; // nombre de la bd
             <input type="number" name="neto10y5" id="neto10y5">
             <br>
             <br>
+
+            <label for="neto21">Neto 21%: </label>
+            <input type="number" name="neto21" id="neto21">
+            <br>
+            <br>
             
             <label for="neto27">Neto 27%: </label>
             <input type="number" name="neto27" id="neto27">
             <br>
             <br>
+            
+            <label for="ConcNoAgra">Concepto No Agrabado: </label>
+            <input type="number" name="ConcNoAgra" id="ConcNoAgra">
+            <br>
+            <br>
 
+            <label for="PercIVA">Percepcion IVA: </label>
+            <input type="number" name="PercIVA" id="PercIVA">
+            <br>
+            <br>
 
+            <label for="PercDGR">Percerpcion DGR: </label>
+            <input type="number" name="PercDGR" id="PercDGR">
+            <br>
+            <br>
+            
+            <label for="PercMuni">Percepcion Municipalidad: </label>
+            <input type="number" name="PercMuni" id="PercMuni">
+            <br>
+            <br>
 
             <input type="submit" value="Generar">
 
             </form>
-            <br><br><br>
+            <br>
         </article>
     </section>
 
@@ -118,7 +131,7 @@ $bas=""; // nombre de la bd
         <section>
         <a href="../Index.html">Volver</a>
         <br>
-        <a href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
+        <a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
         <br>
         </section>
     </footer>
@@ -144,12 +157,12 @@ if ($_POST) {
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
     // Completar los IF's con papá
 
+    include 'condicionalesIFnull.php';
 
-    print($tablaT);
+    $total=(($neto10y5+$IVA10y5)+($neto21+$IVA21)+($neto27+$IVA27)+$PercDGR+$PercIVA+$PercMuni);
 
-
-    mysqli_query($coneccion, "INSERT INTO `t1` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `movimiento`, `TLiquidacion`,`Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
-                                                VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$movimiento', '$TLiquidacion', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
+    mysqli_query($coneccion, "INSERT INTO `t1` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
+                                                VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
 
 }
 
