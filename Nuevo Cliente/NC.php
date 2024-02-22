@@ -58,6 +58,13 @@ $pass=""; // contraseña
 $bas="libro"; // nombre de la bd
 $coneccion=mysqli_connect($mac, $usuar, $pass, $bas);
 
+/* connect_errno llama/trae el ultimo codigo de error
+puede ser usado para referenciar a un error en caso de que ocurra como acá abajo
+*/
+if ($coneccion->connect_errno) {
+    echo "Fallo la conexion " . $coneccion->connect_error;
+}
+
 $nombre="";
 $IVA="";
 $count=0;

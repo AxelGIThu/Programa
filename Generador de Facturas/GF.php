@@ -142,6 +142,12 @@ $bas=""; // nombre de la bd
 <?php
 $coneccion=mysqli_connect($mac, $usuar, $pass, 'libro');
 
+/* connect_errno llama/trae el ultimo codigo de error
+puede ser usado para referenciar a un error en caso de que ocurra como acá abajo
+*/
+if ($coneccion->connect_errno) {
+    echo "Fallo la conexion " . $coneccion->connect_error;
+}
 
 if ($_POST) {
 
