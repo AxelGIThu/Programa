@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleNC.css">
     <title>Nuevo Cliente</title>
 </head>
@@ -40,7 +42,7 @@
     <footer>
         <p>Copyright 2024</p>
         <section>
-        <a href="../Index.html">Volver</a>
+        <a href="../Index.php">Volver</a>
         <br>
         <a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
         <br>

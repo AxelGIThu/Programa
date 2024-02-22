@@ -4,12 +4,13 @@ $mac="localhost"; // servidor
 $usuar="root"; // permisos
 $pass=""; // contraseña
 $bas=""; // nombre de la bd
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleGF.css">
     <title>Gen.Facturas</title>
 </head>
@@ -28,20 +29,7 @@ $bas=""; // nombre de la bd
 
             <label for="ID">ID: </label>
             <select name="ID" id="ID">
-            <?php
-        
-            $coneccion = mysqli_connect('localhost', 'root', '', 'libro');
-            $tabla = mysqli_query($coneccion, "SELECT * FROM clientes");
-
-            while ($datos = mysqli_fetch_array($tabla)) {
-                ?>
-                    <option value="<?php echo $datos['IDCliente'];?>"><?php  echo $datos['IDCliente'] . " - " . $datos['nombre'] ?></option>
-                <?php
-            }
-
-            mysqli_close($coneccion);
-
-            ?>
+                <?php include 'opcionesID.php'; ?>
             </select>
             <br>
             <br>
@@ -129,7 +117,7 @@ $bas=""; // nombre de la bd
     <footer>
         <p>Copyright 2024</p>
         <section>
-        <a href="../Index.html">Volver</a>
+        <a href="../Index.php">Volver</a>
         <br>
         <a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
         <br>
@@ -163,12 +151,28 @@ if ($_POST) {
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
     // Completar los IF's con papá
 
-    include 'condicionalesIFnull.php';
+    $mysqli = new mysqli('localhost','root','','libro');
 
+    $ID_str= $mysqli->real_escape_string($_POST['ID']);
+    $nombreTabla= "t" . $ID_str;
+
+    $neto10y5= $neto10y5 - ($neto10y5 * 0.105);
+    $IVA10y5 = $neto10y5 * 0.105;
+
+    $neto21  = $neto21 - ($neto21 * 0.21);
+    $IVA21   = $neto21   * 0.21;
+
+    $neto27  = $neto27 - ($neto27 * 0.27);
+    $IVA27   = $neto27   * 0.27;
+
+    if ($TImputacion2 != null) {
+        $TImputacion = $TImputacion2;
+    }
+    
     $total=(($neto10y5+$IVA10y5)+($neto21+$IVA21)+($neto27+$IVA27)+$PercDGR+$PercIVA+$PercMuni);
 
-    mysqli_query($coneccion, "INSERT INTO `t1` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
-                                                VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
+    mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
+                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
 
 }
 

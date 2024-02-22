@@ -7,6 +7,8 @@ require_once 'vendor/autoload.php';
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programa</title>
     <link rel="stylesheet" href="index CSS/styleIND.css">
 </head>
@@ -22,11 +24,15 @@ require_once 'vendor/autoload.php';
     <section class="container" id="links">
         
         <article class="center">
-            <button><a href="Generador de Facturas/GF.php">Cargar Factura</a></button>
+            <button><a href="Cargar Facturas/GF.php">Cargar Factura</a></button>
         </article>
         <br><br><br><br><br><br>
         <article class="center">
             <button><a href="Nuevo Cliente/NC.php">Nuevo Cliente</a></button>
+        </article>
+        <br><br><br><br><br><br>
+        <article class="center">
+            <button><a href="Generar Archivo/GA.php">Generar Archivos</a></button>
         </article>
         
     </section>
