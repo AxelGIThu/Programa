@@ -7,17 +7,6 @@ $IVA="";
 $tablaT="";
 $total="";
 
-$IVA21="0";
-$neto21="0";
-$IVA10y5="0";
-$neto10y5="0";
-$IVA27="0";
-$neto27="0";
-$ConcNoAgra="0";
-$PercIVA="0";
-$PercDGR="0";
-$PercMuni="0";
-
 $ID=$_POST['ID'];
 $comprobante=$_POST['comprobante'];
 $procesamiento=$_POST['procesamiento'];

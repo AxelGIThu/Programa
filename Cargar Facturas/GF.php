@@ -156,12 +156,7 @@ if ($_POST) {
     $ID_str= $mysqli->real_escape_string($_POST['ID']);
     $nombreTabla= "t" . $ID_str;
 
-
-    // $IVA10y5 = $neto10y5 * 0.105;
-    // $IVA21   = $neto21   * 0.21;
-    // $IVA27   = $neto27   * 0.27;
-
-    // necesito ayuda logica de como sacar el IVA mediante el neto
+    include 'IVA.php';
 
     if ($TImputacion2 != null) {
         $TImputacion = $TImputacion2;

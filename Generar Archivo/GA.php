@@ -30,7 +30,7 @@
 
             <label for="cliente">Cliente: </label>
             <select name="cliente" id="cliente">
-                <option value=""></option>
+                <?php include 'opcionesID.php';?>
             </select>
             <br><br>
 

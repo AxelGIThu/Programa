@@ -1,27 +1,27 @@
 <?php
 
+require '../vendor/autoload.php';
 require 'conexion.php';
 
 use PhpOffice\PhpSpreadsheet\{Spreadsheet, IOFactory};
+use PhpOffice\PhpSpreadsheet\Writer\Csv;
 
 $TArchivo=$_POST['TArchivo'];
-$cliente=$_POST['cliente'];
 $inicio=$_POST['inicio'];
 $final=$_POST['final'];
 
-$sql = "SELECT * FROM cliente WHERE ";
+$ID_str= $mysqli->real_escape_string($_POST['cliente']);
+    $nombreTabla= "t" . $ID_str;
+
+$sql = "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final";
+$resultado = $mysqli->query($sql);
 
 $excel = new Spreadsheet();
 $hojaActiva = $excel->getActiveSheet();
 $hojaActiva->setTitle("Clientes");
 
+include 'generarCSV.php';
+include 'generarLibro.php';
 
-
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="clientes.xlsx"');
-header('Cache-Control: max-age=0');
-
-$writer = IOFactory::createWriter($excel, 'Xlsx');
-$writer->save('php://output');
 
 ?>
