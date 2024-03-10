@@ -164,8 +164,8 @@ if ($_POST) {
     
     $total=(($neto10y5+$IVA10y5)+($neto21+$IVA21)+($neto27+$IVA27)+$PercDGR+$PercIVA+$PercMuni);
 
-    mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
-                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
+    mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `NComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `total`) 
+                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$total')");
 
 }
 

@@ -17,7 +17,7 @@ $hojaActiva->getColumnDimension('F')->setWidth(12);
 $hojaActiva->setCellValue('F1', 'Movimiento');
 $hojaActiva->getColumnDimension('G')->setWidth(16);
 $hojaActiva->setCellValue('G1', 'Tipo.Imputacion');
-$hojaActiva->getColumnDimension('H')->setWidth(11);
+$hojaActiva->getColumnDimension('H')->setWidth(12);
 $hojaActiva->setCellValue('H1', 'CUIT');
 $hojaActiva->getColumnDimension('I')->setWidth(30);
 $hojaActiva->setCellValue('I1', 'Nombre');

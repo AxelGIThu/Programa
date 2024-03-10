@@ -16,7 +16,7 @@
     </header>
 
     <section>
-
+        <br><br><br><br><br>
         <form action="generador.php" method="post" class="datos">
 
             <h2>¿Que tipo de archivo desea crear?</h2>
@@ -27,18 +27,18 @@
                 <option value="libro">Libro</option>
             </select>
             <br><br>
-
+            
             <label for="cliente">Cliente: </label>
             <select name="cliente" id="cliente">
                 <?php include 'opcionesID.php';?>
             </select>
-            <br><br>
+            <br><br><br><br>
 
             <label for="inicio">Iniciar: </label>
             <input type="number" name="inicio" id="inicio" placeholder="0">
             <label for="final">Terminar: </label>
             <input type="number" name="final" id="final" placeholder="10">
-            <br><br>
+            <br><br><br>
 
             <div>
                 <span class="subTitulo">Ejemplo</span>
@@ -49,13 +49,13 @@
                 </span>
             </div>
 
-            <br><br>
+            <br><br><br><br><br>
 
             <button type="submit">Generar</button>
             <br><br>
 
         </form>
-
+        <br><br><br><br><br>
     </section>
 
     <footer>
