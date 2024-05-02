@@ -150,11 +150,16 @@ if ($_POST) {
     }
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
     // Completar los IF's con papá
-
+    
     $mysqli = new mysqli('localhost','root','','libro');
 
     $ID_str= $mysqli->real_escape_string($_POST['ID']);
-    $nombreTabla= "t" . $ID_str;
+    if ($_POST['movimiento'] == "Compra") {
+        $nombreTabla = "compras" . $ID_str;
+    } else {
+        $nombreTabla = "ventas" . $ID_str;
+    }
+
 
     include 'IVA.php';
 
