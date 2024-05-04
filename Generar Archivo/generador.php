@@ -9,11 +9,7 @@ use PhpOffice\PhpSpreadsheet\Writer\Csv;
 $TArchivo=$_POST['TArchivo'];
 $inicio=$_POST['inicio'];
 $final=$_POST['final'];
-$CoV = $_POST['CoV'];
 
-if ($inicio == NULL or $final == NULL or $inicio < 0 or $final < 0) {
-    include 'error-Ini-Fin.html';
-} else {
 $ID_str= $mysqli->real_escape_string($_POST['cliente']);
     $nombreTabla= $CoV . $ID_str;
 
