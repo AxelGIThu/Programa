@@ -33,11 +33,18 @@
                 <?php include 'opcionesID.php';?>
             </select>
             <br><br><br><br>
+            
+            <label for="CoV">Compra o Venta: </label>
+            <select name="CoV" id="CoV">
+                <option value="compras">Compras</option>
+                <option value="ventas">Ventas</option>
+            </select>
+            <br><br><br><br>
 
             <label for="inicio">Iniciar: </label>
-            <input type="number" name="inicio" id="inicio" placeholder="0">
+            <input type="number" name="inicio" id="inicio" value="0">
             <label for="final">Terminar: </label>
-            <input type="number" name="final" id="final" placeholder="10">
+            <input type="number" name="final" id="final" value="1">
             <br><br><br>
 
             <div>

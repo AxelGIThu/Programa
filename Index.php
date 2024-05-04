@@ -1,6 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
+require_once 'BDInicial.sql';
 
 ?>
 
@@ -20,23 +21,27 @@ require_once 'vendor/autoload.php';
             <h2>IVA</h2>
         </div>
     </header>
-    <br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
     <section class="container" id="links">
         
         <article class="center">
             <button><a href="Cargar Facturas/GF.php">Cargar Factura</a></button>
         </article>
-        <br><br><br><br><br><br>
+        <br><br><br>
         <article class="center">
             <button><a href="Nuevo Cliente/NC.php">Nuevo Cliente</a></button>
         </article>
-        <br><br><br><br><br><br>
+        <br><br><br>
         <article class="center">
             <button><a href="Generar Archivo/GA.php">Generar Archivos</a></button>
         </article>
+        <br><br><br>
+        <article class="center">
+            <button><a href="Tabla de Comp.Vent/TCV.php">Tabla Clientes</a></button>
+        </article>
         
     </section>
-    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
     <footer>
         <p>Copyright 2024</p>
         <section>
