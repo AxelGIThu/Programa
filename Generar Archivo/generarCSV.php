@@ -71,7 +71,7 @@ while ($row = $resultado->fetch_assoc()){
 }
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="clientes.Csv"');
+header('Content-Disposition: attachment;filename=' . $nombre . '.Csv');
 header('Cache-Control: max-age=0');
 
 $writer = IOFactory::createWriter($excel, 'Csv');

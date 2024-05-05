@@ -41,10 +41,14 @@
             </select>
             <br><br><br><br>
 
+            <label for="nombre">Nombre del archivo: </label>
+            <input type="text" name="nombre" id="nombre" placeholder="ArchivoSinNombre">
+            <br><br><br><br>
+
             <label for="inicio">Iniciar: </label>
-            <input type="number" name="inicio" id="inicio" value="0">
+            <input type="number" name="inicio" id="inicio" value="1">
             <label for="final">Terminar: </label>
-            <input type="number" name="final" id="final" value="1">
+            <input type="number" name="final" id="final" value="100">
             <br><br><br>
 
             <div>
