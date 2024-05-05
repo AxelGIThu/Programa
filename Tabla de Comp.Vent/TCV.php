@@ -7,7 +7,8 @@
     <title>Tabla</title>
 </head>
 <body>
-    
+    <!-- Falta agregar filtros por fecha en vez de NFactura -->
+    <!-- Falta poder seleccionar que filas ver en la tabla -->
     <header>
         <h1>Tabla Clientes</h1>
     </header>

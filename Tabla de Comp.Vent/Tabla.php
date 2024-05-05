@@ -3,9 +3,7 @@
 
 /*
 
-Falta arreglar la consulta de SQL de la linea 23
 Falta arreglar el CSS del error-Ini-Fin.html de ambas carpetas (generar archivo y tabla comp.vent)
-Falta poder poner los datos en la tablar, por lo tanto hacer un for tambien para eso
 
 */
 
@@ -22,34 +20,10 @@ $nombreTabla= $CoV . $ID_str;
 if ($inicio == NULL or $final == NULL or $inicio < 0 or $final < 0) {
     include 'error-Ini-Fin.html';
 } else {
-$sql = "SELECT * FROM $nombreTabla NFactura BETWEEN $inicio AND $final";
+$sql = "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final";
 $resultado = $mysqli->query($sql);
 
-/*
-while ($row = $resultado->fetch_assoc()){
-    $hojaActiva->setCellValue('A'.$fila, $row['NFactura']);
-    $hojaActiva->setCellValue('B'.$fila, $row['comprobante']);
-    $hojaActiva->setCellValue('C'.$fila, $row['procesamiento']);
-    $hojaActiva->setCellValue('D'.$fila, $row['TComprobante']);
-    $hojaActiva->setCellValue('E'.$fila, $row['NComprobante']);
-    $hojaActiva->setCellValue('F'.$fila, $row['movimiento']);
-    $hojaActiva->setCellValue('G'.$fila, $row['TImputacion']);
-    $hojaActiva->setCellValue('H'.$fila, $row['CUIT']);
-    $hojaActiva->setCellValue('I'.$fila, $row['nombre']);
-    $hojaActiva->setCellValue('J'.$fila, $row['neto21']);
-    $hojaActiva->setCellValue('K'.$fila, $row['IVA21']);
-    $hojaActiva->setCellValue('L'.$fila, $row['neto10y5']);
-    $hojaActiva->setCellValue('M'.$fila, $row['IVA10y5']);
-    $hojaActiva->setCellValue('N'.$fila, $row['neto27']);
-    $hojaActiva->setCellValue('O'.$fila, $row['IVA27']);
-    $hojaActiva->setCellValue('P'.$fila, $row['ConcNoAgra']);
-    $hojaActiva->setCellValue('Q'.$fila, $row['PercIVA']);
-    $hojaActiva->setCellValue('R'.$fila, $row['PercDGR']);
-    $hojaActiva->setCellValue('S'.$fila, $row['PercMuni']);
-    $hojaActiva->setCellValue('T'.$fila, $row['total']);
-    $fila++;
-}
-*/
+// $tablaDatos = mysqli_query($coneccion, "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final");
 
 ?>
 
@@ -68,22 +42,152 @@ while ($row = $resultado->fetch_assoc()){
     </header>
     
     <section>
-        <table>
+        <br><br><br>
+        <table border="1" style="margin: 0 auto;">
             <tr>
-
+                <th>
+                    Nfactura
+                </th>
+                <th>
+                    Comprobante
+                </th>
+                <th>
+                    Procesamiento
+                </th>
+                <th>
+                    Tcomprobante
+                </th>
+                <th>
+                    NComprobante
+                </th>
+                <th>
+                    Movimiento
+                </th>
+                <th>
+                    TImputacion
+                </th>
+                <th>
+                    CUIT
+                </th>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Neto 21%
+                </th>
+                <th>
+                    IVA 21%
+                </th>
+                <th>
+                    Neto 10,5%
+                </th>
+                <th>
+                    IVA 10,5%
+                </th>
+                <th>
+                    Neto 27%
+                </th>
+                <th>
+                    IVA 27%
+                </th>
+                <th>
+                    ConcNoAgra
+                </th>
+                <th>
+                    Perc IVA
+                </th>
+                <th>
+                    Perc DGR
+                </th>
+                <th>
+                    Perc Muni
+                </th>
+                <th>
+                    Total
+                </th>
             </tr>
         <?php
-        
-
+        $arrayFor = ["NFactura", "comprobante", "procesamiento", "TComprobante", "NComprobante", "movimiento", "TImputacion", "CUIT", "nombre", "neto21", "IVA21", "neto10y5", "IVA10y5", "neto27", "IVA27", "ConcNoAgra", "PercIVA", "PercDGR", "PercMuni", "total"];
+        while ($dato = $resultado->fetch_assoc()){
+            echo "<tr>";
+            foreach ($arrayFor as $nombreDato) { 
+                echo "<th>". $dato[$nombreDato] . "</th>";
+            }
+            echo "</tr>";
+            
+            // print ("<tr>
+            //     <th>
+            //         $dato
+            //     </th>
+            //     <th>
+            //         Comprobante
+            //     </th>
+            //     <th>
+            //         Procesamiento
+            //     </th>
+            //     <th>
+            //         Tcomprobante
+            //     </th>
+            //     <th>
+            //         NComprobante
+            //     </th>
+            //     <th>
+            //         Movimiento
+            //     </th>
+            //     <th>
+            //         TImputacion
+            //     </th>
+            //     <th>
+            //         CUIT
+            //     </th>
+            //     <th>
+            //         Nombre
+            //     </th>
+            //     <th>
+            //         Neto 21%
+            //     </th>
+            //     <th>
+            //         IVA 21%
+            //     </th>
+            //     <th>
+            //         Neto 10,5%
+            //     </th>
+            //     <th>
+            //         IVA 10,5%
+            //     </th>
+            //     <th>
+            //         Neto 27%
+            //     </th>
+            //     <th>
+            //         IVA 27%
+            //     </th>
+            //     <th>
+            //         ConcNoAgra
+            //     </th>
+            //     <th>
+            //         Perc IVA
+            //     </th>
+            //     <th>
+            //         Perc DGR
+            //     </th>
+            //     <th>
+            //         Perc Muni
+            //     </th>
+            //     <th>
+            //         Total
+            //     </th>
+            // </tr>");
+        }
         
         ?>
         </table>
+        <br><br><br>
     </section>
 
     <footer>
         <p>Copyright 2024</p>
         <section>
-        <a href="../Index.php">Volver</a>
+        <a href="TCV.php">Volver</a>
         <br>
         <a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
         <br>
