@@ -17,10 +17,14 @@ $final=$_POST['final'];
 $CoV = $_POST['CoV'];
 $nombreTabla= $CoV . $ID_str;
 
-if ($inicio == NULL or $final == NULL or $inicio < 0 or $final < 0) {
-    include 'error-Ini-Fin.html';
-} else {
-$sql = "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final";
+$ValFin = str_replace("-","",$final);
+$ValIni = str_replace("-","",$inicio);
+
+// if ($inicio == NULL or $final == NULL or $inicio < 0 or $final < 0) {
+//     include 'error-Ini-Fin.html';
+// } else {
+// $sql = "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final";
+$sql = "SELECT * FROM $nombreTabla WHERE comprobante BETWEEN $ValIni AND $ValFin";
 $resultado = $mysqli->query($sql);
 
 // $tablaDatos = mysqli_query($coneccion, "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final");
@@ -44,139 +48,33 @@ $resultado = $mysqli->query($sql);
     <section>
         <br><br><br>
         <table border="1" style="margin: 0 auto;">
-            <tr>
-                <th>
-                    Nfactura
-                </th>
-                <th>
-                    Comprobante
-                </th>
-                <th>
-                    Procesamiento
-                </th>
-                <th>
-                    Tcomprobante
-                </th>
-                <th>
-                    NComprobante
-                </th>
-                <th>
-                    Movimiento
-                </th>
-                <th>
-                    TImputacion
-                </th>
-                <th>
-                    CUIT
-                </th>
-                <th>
-                    Nombre
-                </th>
-                <th>
-                    Neto 21%
-                </th>
-                <th>
-                    IVA 21%
-                </th>
-                <th>
-                    Neto 10,5%
-                </th>
-                <th>
-                    IVA 10,5%
-                </th>
-                <th>
-                    Neto 27%
-                </th>
-                <th>
-                    IVA 27%
-                </th>
-                <th>
-                    ConcNoAgra
-                </th>
-                <th>
-                    Perc IVA
-                </th>
-                <th>
-                    Perc DGR
-                </th>
-                <th>
-                    Perc Muni
-                </th>
-                <th>
-                    Total
-                </th>
-            </tr>
         <?php
+        // Creando el array para los datos filtrados de la tabla
         $arrayFor = ["NFactura", "comprobante", "procesamiento", "TComprobante", "NComprobante", "movimiento", "TImputacion", "CUIT", "nombre", "neto21", "IVA21", "neto10y5", "IVA10y5", "neto27", "IVA27", "ConcNoAgra", "PercIVA", "PercDGR", "PercMuni", "total"];
+        $arrayWhile = [];
+        $i2 = 0;
+        
+        foreach ($arrayFor as $i) {
+            if (isset($_POST[$i])) {
+                $arrayWhile[] = $arrayFor[$i2];
+            }
+            $i2++;
+        }
+
+        // Creando el encabezado filtrado de la tabla
+        echo "<tr>";
+            foreach ($arrayWhile as $nombreDato) { 
+                echo "<th>". $nombreDato . "</th>";
+            }
+        echo "</tr>";
+        
+        // Poblando la tabla
         while ($dato = $resultado->fetch_assoc()){
             echo "<tr>";
-            foreach ($arrayFor as $nombreDato) { 
+            foreach ($arrayWhile as $nombreDato) { 
                 echo "<th>". $dato[$nombreDato] . "</th>";
             }
             echo "</tr>";
-            
-            // print ("<tr>
-            //     <th>
-            //         $dato
-            //     </th>
-            //     <th>
-            //         Comprobante
-            //     </th>
-            //     <th>
-            //         Procesamiento
-            //     </th>
-            //     <th>
-            //         Tcomprobante
-            //     </th>
-            //     <th>
-            //         NComprobante
-            //     </th>
-            //     <th>
-            //         Movimiento
-            //     </th>
-            //     <th>
-            //         TImputacion
-            //     </th>
-            //     <th>
-            //         CUIT
-            //     </th>
-            //     <th>
-            //         Nombre
-            //     </th>
-            //     <th>
-            //         Neto 21%
-            //     </th>
-            //     <th>
-            //         IVA 21%
-            //     </th>
-            //     <th>
-            //         Neto 10,5%
-            //     </th>
-            //     <th>
-            //         IVA 10,5%
-            //     </th>
-            //     <th>
-            //         Neto 27%
-            //     </th>
-            //     <th>
-            //         IVA 27%
-            //     </th>
-            //     <th>
-            //         ConcNoAgra
-            //     </th>
-            //     <th>
-            //         Perc IVA
-            //     </th>
-            //     <th>
-            //         Perc DGR
-            //     </th>
-            //     <th>
-            //         Perc Muni
-            //     </th>
-            //     <th>
-            //         Total
-            //     </th>
-            // </tr>");
         }
         
         ?>
@@ -199,6 +97,6 @@ $resultado = $mysqli->query($sql);
 
 <?php
 
-}
+// }
 
 ?>
