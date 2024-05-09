@@ -17,7 +17,7 @@
     
         <form action="Tabla.php" method="post" class="datos">
 
-            <br><br><br><br><br><br><br><br><br>
+            <br><br><br><br>
             
             <h2>
                 Elija de que cliente quiere mostrar su tabla
@@ -44,7 +44,8 @@
             <label for="final">Hasta: </label>
             <input type="date" name="final" id="final" value=100>
 
-            <br><br>
+            <h2>Filtro Columnas</h2>
+
             <label for="NFactura">NumFac</label>
             <input type="checkbox" name="NFactura" id="NFactura" checked>
             <label for="comprobante">Comp</label>
@@ -63,6 +64,8 @@
             <input type="checkbox" name="CUIT" id="CUIT" checked>
             <label for="nombre">Nombre</label>
             <input type="checkbox" name="nombre" id="nombre" checked>
+            <label for="importe">Importe</label>
+            <input type="checkbox" name="importe" id="importe" checked>
             <br>
             <label for="neto21">Neto 21%</label>
             <input type="checkbox" name="neto21" id="neto21" checked>
@@ -78,19 +81,22 @@
             <input type="checkbox" name="IVA27" id="IVA27" checked>
             <label for="ConcNoAgra">ConcNoAgra</label>
             <input type="checkbox" name="ConcNoAgra" id="ConcNoAgra" checked>
+            <br>
             <label for="PercIVA">PercIVA</label>
             <input type="checkbox" name="PercIVA" id="PercIVA" checked>
             <label for="PercDGR">PercDGR</label>
             <input type="checkbox" name="PercDGR" id="PercDGR" checked>
             <label for="PercMuni">PercMuni</label>
             <input type="checkbox" name="PercMuni" id="PercMuni" checked>
+            <label for="otros">otros</label>
+            <input type="checkbox" name="otros" id="otros" checked>
             <label for="total">Total</label>
             <input type="checkbox" name="total" id="total" checked>
             <br><br>
             <button type="submit">Mostrar Tabla</button>
             <br><br>
 
-            <br><br><br><br><br><br><br><br><br><br>
+            <br><br><br>
 
         </form>
     

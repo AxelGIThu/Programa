@@ -87,14 +87,14 @@ if($_POST) {
     $mov = "mov$count";
 
     mysqli_query($coneccion, "CREATE TABLE `compras$count` (NFactura int AUTO_INCREMENT PRIMARY KEY ,comprobante date, procesamiento date, TComprobante varchar(50), NComprobante text(13), movimiento varchar(50), TImputacion varchar(50), 
-    CUIT varchar(11), nombre text(100), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
+    CUIT varchar(11), nombre text(100), importe decimal(10,2), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
     neto27 decimal(10,2), IVA27 decimal(10,2), ConcNoAgra decimal(10,2), PercIVA decimal(10,2), PercDGR decimal(10,2), 
-    PercMuni decimal(10,2), total decimal(10,2)) ENGINE='innoDB'");
+    PercMuni decimal(10,2), otros decimal(10,2), total decimal(10,2)) ENGINE='innoDB'");
 
     mysqli_query($coneccion, "CREATE TABLE `ventas$count` (NFactura int AUTO_INCREMENT PRIMARY KEY ,comprobante date, procesamiento date, TComprobante varchar(50), NComprobante text(13), movimiento varchar(50), TImputacion varchar(50), 
-    CUIT varchar(11), nombre text(100), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
+    CUIT varchar(11), nombre text(100), importe decimal(10,2), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
     neto27 decimal(10,2), IVA27 decimal(10,2), ConcNoAgra decimal(10,2), PercIVA decimal(10,2), PercDGR decimal(10,2), 
-    PercMuni decimal(10,2), total decimal(10,2)) ENGINE='innoDB'");
+    PercMuni decimal(10,2), otros decimal(10,2), total decimal(10,2)) ENGINE='innoDB'");
 
     /* Orden: Fecha de factura; fecha de procesamiento; tipo de comprobante; tipo de imputación; 
     CUIT; Apellido y Nombre o Razón social; Neto 21; iva 21; Neto 10.5; iva 10.5; 

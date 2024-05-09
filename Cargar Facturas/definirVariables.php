@@ -1,25 +1,35 @@
 <?php
-$CUIT="";
-$ID="";
-$CUIT="";
-$nombre="";
-$IVA="";
-$tablaT="";
-$total="";
+$CUIT   = "";
+$ID     = "";
+$CUIT   = "";
+$nombre = "";
+$IVA    = "";
+$tablaT = "";
+$total = 0;
 
-$ID=$_POST['ID'];
-$comprobante=$_POST['comprobante'];
-$procesamiento=$_POST['procesamiento'];
-$movimiento=$_POST['movimiento'];
-$TImputacion=$_POST['TImputacion'];
-$TImputacion2=$_POST['TImputacion2'];
-$TComprobante=$_POST['TComprobante'];
-$NComprobante=$_POST['NComprobante'];
-$neto21=$_POST['neto21'];
-$neto10y5=$_POST['neto10y5'];
-$neto27=$_POST['neto27'];
-$ConcNoAgra=$_POST['ConcNoAgra'];
-$PercIVA=$_POST['PercIVA'];
-$PercDGR=$_POST['PercDGR'];
-$PercMuni=$_POST['PercMuni'];
+$array = array('ID','comprobante','procesamiento','movimiento','TImputacion','TComprobante','NComprobante', 'importe','neto21','neto10y5','neto27','ConcNoAgra','PercIVA','PercDGR','PercMuni','otros');
+
+foreach ($array as $i) {
+    if ($_POST[$i] == null) {
+        $_POST[$i] = 0;
+    }
+}
+
+$ID           = $_POST['ID'];
+$comprobante  = $_POST['comprobante'];
+$procesamiento= $_POST['procesamiento'];
+$movimiento   = $_POST['movimiento'];
+$TImputacion  = $_POST['TImputacion'];
+$TComprobante = $_POST['TComprobante'];
+$NComprobante = $_POST['NComprobante'];
+$neto21       = $_POST['neto21'];
+$neto10y5     = $_POST['neto10y5'];
+$neto27       = $_POST['neto27'];
+$ConcNoAgra   = $_POST['ConcNoAgra'];
+$PercIVA      = $_POST['PercIVA'];
+$PercDGR      = $_POST['PercDGR'];
+$PercMuni     = $_POST['PercMuni'];
+$otros        = $_POST['otros'];
+$importe      = $_POST['importe'];
+
 ?>

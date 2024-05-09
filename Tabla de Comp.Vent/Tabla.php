@@ -50,7 +50,7 @@ $resultado = $mysqli->query($sql);
         <table border="1" style="margin: 0 auto;">
         <?php
         // Creando el array para los datos filtrados de la tabla
-        $arrayFor = ["NFactura", "comprobante", "procesamiento", "TComprobante", "NComprobante", "movimiento", "TImputacion", "CUIT", "nombre", "neto21", "IVA21", "neto10y5", "IVA10y5", "neto27", "IVA27", "ConcNoAgra", "PercIVA", "PercDGR", "PercMuni", "total"];
+        $arrayFor = ["NFactura", "comprobante", "procesamiento", "TComprobante", "NComprobante", "movimiento", "TImputacion", "CUIT", "nombre", "importe", "neto21", "IVA21", "neto10y5", "IVA10y5", "neto27", "IVA27", "ConcNoAgra", "PercIVA", "PercDGR", "PercMuni", "otros", "total"];
         $arrayWhile = [];
         $i2 = 0;
         
@@ -64,7 +64,7 @@ $resultado = $mysqli->query($sql);
         // Creando el encabezado filtrado de la tabla
         echo "<tr>";
             foreach ($arrayWhile as $nombreDato) { 
-                echo "<th>". $nombreDato . "</th>";
+                echo "<th><h5>". $nombreDato . "</h5></th>";
             }
         echo "</tr>";
         
@@ -72,7 +72,7 @@ $resultado = $mysqli->query($sql);
         while ($dato = $resultado->fetch_assoc()){
             echo "<tr>";
             foreach ($arrayWhile as $nombreDato) { 
-                echo "<th>". $dato[$nombreDato] . "</th>";
+                echo "<th><h5>". $dato[$nombreDato] . "</h5></th>";
             }
             echo "</tr>";
         }

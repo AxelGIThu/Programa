@@ -1,74 +1,97 @@
 <?php
 
 use PhpOffice\PhpSpreadsheet\IOFactory;
+$neto = 0;
+$Aimporte = 0;
+$Aneto = 0;
+$Aiva10y5 = 0;
+$Aiva21 = 0;
+$Aiva27 = 0;
+$Acna = 0;
+$Api = 0;
+$Adgr = 0;
+$Amuni = 0;
+$Aotros = 0;
+$Atotal = 0;
+
+while ($row2 = $resultado2->fetch_assoc()){
+    $neto = $row2['neto10y5'] + $row2['neto21'] + $row2['neto27'];
+}
 
 if ($TArchivo == "libro"){
-$hojaActiva->getColumnDimension('A')->setWidth(11);
-$hojaActiva->setCellValue('A1', 'Nro.Factura');
+$hojaActiva->getColumnDimension('A')->setWidth(25);
+$hojaActiva->setCellValue('A1', 'Nombre');
 $hojaActiva->getColumnDimension('B')->setWidth(20);
-$hojaActiva->setCellValue('B1', 'Fecha.Comprobante');
-$hojaActiva->getColumnDimension('C')->setWidth(20);
-$hojaActiva->setCellValue('C1', 'Fecha.Procesamiento');
-$hojaActiva->getColumnDimension('D')->setWidth(18);
-$hojaActiva->setCellValue('D1', 'Tipo.Comprobante');
-$hojaActiva->getColumnDimension('E')->setWidth(18);
-$hojaActiva->setCellValue('E1', 'Nro.Comprobante');
-$hojaActiva->getColumnDimension('F')->setWidth(12);
-$hojaActiva->setCellValue('F1', 'Movimiento');
-$hojaActiva->getColumnDimension('G')->setWidth(16);
-$hojaActiva->setCellValue('G1', 'Tipo.Imputacion');
-$hojaActiva->getColumnDimension('H')->setWidth(11);
-$hojaActiva->setCellValue('H1', 'CUIT');
-$hojaActiva->getColumnDimension('I')->setWidth(30);
-$hojaActiva->setCellValue('I1', 'Nombre');
-$hojaActiva->getColumnDimension('J')->setWidth(9);
-$hojaActiva->setCellValue('J1', 'Neto 21%');
-$hojaActiva->getColumnDimension('K')->setWidth(9);
-$hojaActiva->setCellValue('K1', 'IVA 21%');
-$hojaActiva->getColumnDimension('L')->setWidth(11);
-$hojaActiva->setCellValue('L1', 'Neto 10,5%');
-$hojaActiva->getColumnDimension('M')->setWidth(9);
-$hojaActiva->setCellValue('M1', 'IVA 10,5%');
-$hojaActiva->getColumnDimension('N')->setWidth(9);
-$hojaActiva->setCellValue('N1', 'Neto 27%');
-$hojaActiva->getColumnDimension('O')->setWidth(9);
-$hojaActiva->setCellValue('O1', 'IVA 27%');
-$hojaActiva->getColumnDimension('P')->setWidth(23);
-$hojaActiva->setCellValue('P1', 'Concepto No Agrabado');
-$hojaActiva->getColumnDimension('Q')->setWidth(14);
-$hojaActiva->setCellValue('Q1', 'Percepcion IVA');
-$hojaActiva->getColumnDimension('R')->setWidth(15);
-$hojaActiva->setCellValue('R1', 'Percepcion DGR');
-$hojaActiva->getColumnDimension('S')->setWidth(16);
-$hojaActiva->setCellValue('S1', 'Percepcion Muni');
-$hojaActiva->getColumnDimension('T')->setWidth(9);
-$hojaActiva->setCellValue('T1', 'Total');
+$hojaActiva->setCellValue('B1', 'Tipo.Imputacion');
+$hojaActiva->getColumnDimension('C')->setWidth(17);
+$hojaActiva->setCellValue('C1', 'Importe');
+$hojaActiva->getColumnDimension('D')->setWidth(17);
+$hojaActiva->setCellValue('D1', 'Neto');
+$hojaActiva->getColumnDimension('E')->setWidth(17);
+$hojaActiva->setCellValue('E1', 'IVA 10,5%');
+$hojaActiva->getColumnDimension('F')->setWidth(17);
+$hojaActiva->setCellValue('F1', 'IVA 21%');
+$hojaActiva->getColumnDimension('G')->setWidth(17);
+$hojaActiva->setCellValue('G1', 'IVA 27%');
+$hojaActiva->getColumnDimension('H')->setWidth(22);
+$hojaActiva->setCellValue('H1', 'Concepto No Agrabado');
+$hojaActiva->getColumnDimension('I')->setWidth(17);
+$hojaActiva->setCellValue('I1', 'Percepcion IVA');
+$hojaActiva->getColumnDimension('J')->setWidth(17);
+$hojaActiva->setCellValue('J1', 'Percepcion DGR');
+$hojaActiva->getColumnDimension('K')->setWidth(17);
+$hojaActiva->setCellValue('K1', 'Percepcion Muni');
+$hojaActiva->getColumnDimension('L')->setWidth(17);
+$hojaActiva->setCellValue('L1', 'Otros');
+$hojaActiva->getColumnDimension('M')->setWidth(17);
+$hojaActiva->setCellValue('M1', 'Total');
 
 $fila = 2;
 
 while ($row = $resultado->fetch_assoc()){
-    $hojaActiva->setCellValue('A'.$fila, $row['NFactura']);
-    $hojaActiva->setCellValue('B'.$fila, $row['comprobante']);
-    $hojaActiva->setCellValue('C'.$fila, $row['procesamiento']);
-    $hojaActiva->setCellValue('D'.$fila, $row['TComprobante']);
-    $hojaActiva->setCellValue('E'.$fila, $row['NComprobante']);
-    $hojaActiva->setCellValue('F'.$fila, $row['movimiento']);
-    $hojaActiva->setCellValue('G'.$fila, $row['TImputacion']);
-    $hojaActiva->setCellValue('H'.$fila, $row['CUIT']);
-    $hojaActiva->setCellValue('I'.$fila, $row['nombre']);
-    $hojaActiva->setCellValue('J'.$fila, $row['neto21']);
-    $hojaActiva->setCellValue('K'.$fila, $row['IVA21']);
-    $hojaActiva->setCellValue('L'.$fila, $row['neto10y5']);
-    $hojaActiva->setCellValue('M'.$fila, $row['IVA10y5']);
-    $hojaActiva->setCellValue('N'.$fila, $row['neto27']);
-    $hojaActiva->setCellValue('O'.$fila, $row['IVA27']);
-    $hojaActiva->setCellValue('P'.$fila, $row['ConcNoAgra']);
-    $hojaActiva->setCellValue('Q'.$fila, $row['PercIVA']);
-    $hojaActiva->setCellValue('R'.$fila, $row['PercDGR']);
-    $hojaActiva->setCellValue('S'.$fila, $row['PercMuni']);
-    $hojaActiva->setCellValue('T'.$fila, $row['total']);
+    $hojaActiva->setCellValue('A'.$fila, $row['nombre']);
+    $hojaActiva->setCellValue('B'.$fila, $row['TImputacion']);
+    $hojaActiva->setCellValue('C'.$fila, $row['importe']);
+    $hojaActiva->setCellValue('D'.$fila, $neto);
+    $hojaActiva->setCellValue('E'.$fila, $row['IVA10y5']);
+    $hojaActiva->setCellValue('F'.$fila, $row['IVA21']);
+    $hojaActiva->setCellValue('G'.$fila, $row['IVA27']);
+    $hojaActiva->setCellValue('H'.$fila, $row['ConcNoAgra']);
+    $hojaActiva->setCellValue('I'.$fila, $row['PercIVA']);
+    $hojaActiva->setCellValue('J'.$fila, $row['PercDGR']);
+    $hojaActiva->setCellValue('K'.$fila, $row['PercMuni']);
+    $hojaActiva->setCellValue('L'.$fila, $row['otros']);
+    $hojaActiva->setCellValue('M'.$fila, $row['total']);
     $fila++;
+
+    $Aimporte = $Aimporte + $row['importe'];
+    $Aneto = $Aneto + $neto;
+    $Aiva10y5 = $Aiva10y5 + $row['IVA10y5'];
+    $Aiva21 = $Aiva21 + $row['IVA21'];
+    $Aiva27 = $Aiva27 + $row['IVA27'];
+    $Acna = $Acna + $row['ConcNoAgra'];
+    $Api = $Api + $row['PercIVA'];
+    $Adgr = $Adgr + $row['PercDGR'];
+    $Amuni = $Amuni + $row['PercMuni'];
+    $Aotros = $Aotros + $row['otros'];
+    $Atotal = $Atotal + $row['total'];
 }
+
+$fila++;
+
+    $hojaActiva->setCellValue('A'.$fila, 'Totales');
+
+    $hojaActiva->setCellValue('C'.$fila, $Aimporte);
+    $hojaActiva->setCellValue('D'.$fila, $Aneto);
+    $hojaActiva->setCellValue('E'.$fila, $Aiva10y5);
+    $hojaActiva->setCellValue('F'.$fila, $Aiva21);
+    $hojaActiva->setCellValue('G'.$fila, $Aiva27);
+    $hojaActiva->setCellValue('H'.$fila, $Acna);
+    $hojaActiva->setCellValue('I'.$fila, $Api);
+    $hojaActiva->setCellValue('J'.$fila, $Adgr);
+    $hojaActiva->setCellValue('K'.$fila, $Amuni);
+    $hojaActiva->setCellValue('L'.$fila, $Aotros);
+    $hojaActiva->setCellValue('M'.$fila, $Atotal);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment;filename=' . $nombre . '.Xlsx');

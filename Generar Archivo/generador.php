@@ -24,6 +24,7 @@ if ($inicio == NULL or $final == NULL or $inicio < 0 or $final < 0) {
     
     $sql = "SELECT * FROM $nombreTabla WHERE NFactura BETWEEN $inicio AND $final";
     $resultado = $mysqli->query($sql);
+    $resultado2 = $mysqli->query($sql);
     
     $excel = new Spreadsheet();
     $hojaActiva = $excel->getActiveSheet();
