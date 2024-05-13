@@ -13,7 +13,7 @@
     </header>
     
     <section>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
     
         <form action="NC.php" method="post" class="datos">
         <br>
@@ -38,7 +38,7 @@
 
         </form>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br>
     </section>
     
     <footer>

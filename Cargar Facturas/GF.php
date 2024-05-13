@@ -71,47 +71,47 @@ $bas=""; // nombre de la bd
             <br>
 
             <label for="importe">Importe: </label>
-            <input type="number" name="importe" id="importe">
+            <input type="number" name="importe" id="importe" step="0.01">
             <br>
             <br>
 
             <label for="neto10y5">Neto 10,5%: </label>
-            <input type="number" name="neto10y5" id="neto10y5">
+            <input type="number" name="neto10y5" id="neto10y5" step="0.01">
             <br>
             <br>
 
             <label for="neto21">Neto 21%: </label>
-            <input type="number" name="neto21" id="neto21">
+            <input type="number" name="neto21" id="neto21" step="0.01">
             <br>
             <br>
             
             <label for="neto27">Neto 27%: </label>
-            <input type="number" name="neto27" id="neto27">
+            <input type="number" name="neto27" id="neto27" step="0.01">
             <br>
             <br>
             
             <label for="ConcNoAgra">Concepto No Agrabado: </label>
-            <input type="number" name="ConcNoAgra" id="ConcNoAgra">
+            <input type="number" name="ConcNoAgra" id="ConcNoAgra" step="0.01">
             <br>
             <br>
 
             <label for="PercIVA">Percepcion IVA: </label>
-            <input type="number" name="PercIVA" id="PercIVA">
+            <input type="number" name="PercIVA" id="PercIVA" step="0.01">
             <br>
             <br>
 
             <label for="PercDGR">Percerpcion DGR: </label>
-            <input type="number" name="PercDGR" id="PercDGR">
+            <input type="number" name="PercDGR" id="PercDGR" step="0.01">
             <br>
             <br>
             
             <label for="PercMuni">Percepcion Municipalidad: </label>
-            <input type="number" name="PercMuni" id="PercMuni">
+            <input type="number" name="PercMuni" id="PercMuni" step="0.01">
             <br>
             <br>
 
             <label for="otros">Otros: </label>
-            <input type="number" name="otros" id="otros">
+            <input type="number" name="otros" id="otros" step="0.01">
             <br>
             <br>
 
