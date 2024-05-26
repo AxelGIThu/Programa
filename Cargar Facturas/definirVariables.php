@@ -1,4 +1,5 @@
 <?php
+// Definir variables vacias para evitar problemas
 $CUIT   = "";
 $ID     = "";
 $CUIT   = "";
@@ -13,9 +14,12 @@ foreach ($array as $i) {
     if ($_POST[$i] == null) {
         $_POST[$i] = 0;
     }
+
 }
 
+// Traer valores del formulario
 $ID           = $_POST['ID'];
+$ID2           = $_POST['ID2'];
 $comprobante  = $_POST['comprobante'];
 $procesamiento= $_POST['procesamiento'];
 $movimiento   = $_POST['movimiento'];

@@ -24,15 +24,14 @@ $count=0;
     $count = ContarClientes();
 
     $count2 = $count;
-    $mov = "mov$count";
 
     mysqli_query($coneccion, "CREATE TABLE `compras$count` (NFactura int AUTO_INCREMENT PRIMARY KEY ,comprobante date, procesamiento date, TComprobante varchar(50), NComprobante varchar(15), movimiento varchar(50), TImputacion varchar(50), 
-    CUIT varchar(11), nombre text(100), importe decimal(10,2), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
+    CUIT varchar(11), nombre text(100), CompVend text(100), importe decimal(10,2), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
     neto27 decimal(10,2), IVA27 decimal(10,2), ConcNoAgra decimal(10,2), PercIVA decimal(10,2), PercDGR decimal(10,2), 
     PercMuni decimal(10,2), otros decimal(10,2), total decimal(10,2)) ENGINE='innoDB'");
 
     mysqli_query($coneccion, "CREATE TABLE `ventas$count` (NFactura int AUTO_INCREMENT PRIMARY KEY ,comprobante date, procesamiento date, TComprobante varchar(50), NComprobante varchar(13), movimiento varchar(50), TImputacion varchar(50), 
-    CUIT varchar(11), nombre text(100), importe decimal(10,2), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
+    CUIT varchar(11), nombre text(100), CompVend text(100), importe decimal(10,2), neto21 decimal(10,2), IVA21 decimal(10,2), neto10y5 decimal(10,2), IVA10y5 decimal(10,2), 
     neto27 decimal(10,2), IVA27 decimal(10,2), ConcNoAgra decimal(10,2), PercIVA decimal(10,2), PercDGR decimal(10,2), 
     PercMuni decimal(10,2), otros decimal(10,2), total decimal(10,2)) ENGINE='innoDB'");
 

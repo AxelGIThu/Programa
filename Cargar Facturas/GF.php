@@ -37,53 +37,53 @@ $bas=""; // nombre de la bd
             <form action="GF.php" method="post" class="datos">
 
             <label for="ID">Cliente: </label>
-            <input type="text" list='lista' name="ID" id="ID">
+            <input type="text" list='lista' name="ID" id="ID" required>
             <br>
             <br>
 
             <label for="ID2">Comprador/Vendedor </label>
-            <input type="text" list='lista' name="ID2" id="ID2">
+            <input type="text" list='lista' name="ID2" id="ID2" required>
             <br>
             <br>
 
             <label for="comprobante">Comprobante: </label>
-            <input type="date" name="comprobante" id="comprobante">
+            <input type="date" name="comprobante" id="comprobante" required>
             <br>
             <br>
             
             <label for="procesamiento">Procesamiento: </label>
-            <input type="date" name="procesamiento" id="procesamiento">
+            <input type="date" name="procesamiento" id="procesamiento" required>
             <br>
             <br>
             
             <label for="movimiento">Movimiento: </label>
-            <select name="movimiento" id="movimiento">
+            <select name="movimiento" id="movimiento" required>
                 <?php include 'opcionesMov.php';?>
             </select>
             <br>
             <br>
             
             <label for="TImputacion">Tipo de Imputacion: </label>
-            <select name="TImputacion" id="TImputacion">
+            <select name="TImputacion" id="TImputacion" required>
                 <?php include 'opcionesTImp.php';?>
             </select>
             <br>
             <br>
 
             <label for="TComprobante">Tipo de Comprobante: </label>
-            <select name="TComprobante" id="TComprobante">
+            <select name="TComprobante" id="TComprobante" required>
                 <?php include 'opcionesTCom.php'; ?>
             </select>
             <br>
             <br>
             
             <label for="NComprobante">Numero de Comprobante: </label>
-            <input type="text" name="NComprobante" id="NComprobante" placeholder="A1234.12345678">
+            <input type="text" name="NComprobante" id="NComprobante" placeholder="A1234.12345678" required>
             <br>
             <br>
 
             <label for="importe">Importe: </label>
-            <input type="number" name="importe" id="importe" step="0.01">
+            <input type="number" name="importe" id="importe" step="0.01" required>
             <br>
             <br>
 
@@ -123,7 +123,7 @@ $bas=""; // nombre de la bd
             <br>
 
             <label for="otros">Otros: </label>
-            <input type="number" name="otros" id="otros" step="0.01">
+            <input type="number" name="otros" id="otros" step="0.01" >
             <br>
             <br>
 
@@ -170,6 +170,13 @@ if ($_POST) {
         $nombre = $row[1];
         $IVA = $row[2];
     }
+
+    $tabla2 = mysqli_query($coneccion, "SELECT nombre FROM clientes WHERE IDCliente = $ID2");
+
+    while ($row = mysqli_fetch_array($tabla2)) {
+        $CompVend = $row[0];
+    }
+
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
     // Completar los IF's con papá
     
@@ -184,15 +191,11 @@ if ($_POST) {
 
 
     include 'IVA.php';
-    
-    // foreach ($array as $i) {
-    //     $total = $total + $i;
-    // }
 
     $total=(($neto10y5+$IVA10y5)+($neto21+$IVA21)+($neto27+$IVA27)+$ConcNoAgra+$PercDGR+$PercIVA+$PercMuni+$otros+$importe);
 
-    mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `NComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `importe`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `otros`, `total`) 
-                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$importe', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$otros', '$total')");
+    mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `NComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `CompVend`, `importe`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `otros`, `total`) 
+                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$CompVend', '$importe', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$otros', '$total')");
 
 }
 
