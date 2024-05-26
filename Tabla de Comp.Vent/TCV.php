@@ -94,19 +94,21 @@
             <input type="checkbox" name="total" id="total" checked>
             <br><br>
             <button type="submit">Mostrar Tabla</button>
-            <br><br>
-
-            <br><br><br>
 
         </form>
-    
+
+        </form>
+            <br>
+            <form action="" class="datos">
+            <button><a href="../Index.php">Volver</a></button>
+        </form>
+
+        <br><br><br>
     </section>
 
     <footer>
         <p>Copyright 2024</p>
         <section>
-        <a href="../Index.php">Volver</a>
-        <br>
         <a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
         <br>
         </section>

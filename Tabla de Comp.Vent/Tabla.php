@@ -79,6 +79,13 @@ $resultado = $mysqli->query($sql);
         
         ?>
         </table>
+        
+        </form>
+            <br>
+            <form action="" class="datos">
+            <button><a href="../Index.php">Volver</a></button>
+        </form>
+
         <br><br><br>
     </section>
 

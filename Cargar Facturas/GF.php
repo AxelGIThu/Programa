@@ -22,15 +22,27 @@ $bas=""; // nombre de la bd
     
     <section>
 
+        <!--<datalist id=''> 
+                <option value=""></option>
+            </datalist>              
+    -->
         <article>
+            
+            <!-- Lista de recomendaciones para los input ID y ID2 (cliente y comprador o vendedor) -->
+            <datalist id="lista">
+                <?php  include 'opcionesID.php'; ?>
+            </datalist>
 
             <br>
             <form action="GF.php" method="post" class="datos">
 
-            <label for="ID">ID: </label>
-            <select name="ID" id="ID">
-                <?php include 'opcionesID.php'; ?>
-            </select>
+            <label for="ID">Cliente: </label>
+            <input type="text" list='lista' name="ID" id="ID">
+            <br>
+            <br>
+
+            <label for="ID2">Comprador/Vendedor </label>
+            <input type="text" list='lista' name="ID2" id="ID2">
             <br>
             <br>
 
@@ -66,7 +78,7 @@ $bas=""; // nombre de la bd
             <br>
             
             <label for="NComprobante">Numero de Comprobante: </label>
-            <input type="number" name="NComprobante" id="NComprobante" placeholder="0000000000000">
+            <input type="text" name="NComprobante" id="NComprobante" placeholder="A1234.12345678">
             <br>
             <br>
 
@@ -115,8 +127,12 @@ $bas=""; // nombre de la bd
             <br>
             <br>
 
-            <input type="submit" value="Generar">
+            <input type="submit" value="Generar"> 
 
+            </form>
+            <br>
+            <form action="" class="datos">
+            <button><a href="../Index.php">Volver</a></button>
             </form>
             <br>
         </article>
@@ -125,8 +141,6 @@ $bas=""; // nombre de la bd
     <footer>
         <p>Copyright 2024</p>
         <section>
-        <a href="../Index.php">Volver</a>
-        <br>
         <a target="_blank" href="http://localhost/phpmyadmin/index.php?route=/database/structure&db=libro">Base de datos</a>
         <br>
         </section>
