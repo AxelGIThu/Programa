@@ -161,7 +161,25 @@ if ($coneccion->connect_errno) {
 
 if ($_POST) {
 
+    include '../funciones.php';
     include 'definirVariables.php';
+
+    $tabla2 = mysqli_query($coneccion, "SELECT IDCliente FROM clientes");
+
+    while ($row = mysqli_fetch_array($tabla2)) {
+        $CompVend = $row[0];
+        if ($row[0] == $ID2) {
+            $existe++;
+        }
+        if ($row[0] == $ID) {
+            $existe++;
+        }
+    }
+
+    if ($existe != 2) {
+        echo "<script src='warning.js'></script>";
+        goto end;
+    } else {
 
     $tabla2 = mysqli_query($coneccion, "SELECT CUIT, nombre, IVA FROM clientes WHERE IDCliente = $ID");
 
@@ -169,12 +187,6 @@ if ($_POST) {
         $CUIT = $row[0];
         $nombre = $row[1];
         $IVA = $row[2];
-    }
-
-    $tabla2 = mysqli_query($coneccion, "SELECT nombre FROM clientes WHERE IDCliente = $ID2");
-
-    while ($row = mysqli_fetch_array($tabla2)) {
-        $CompVend = $row[0];
     }
 
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
@@ -196,7 +208,8 @@ if ($_POST) {
 
     mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `NComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `CompVend`, `importe`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `otros`, `total`) 
                                                   VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$CompVend', '$importe', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$otros', '$total')");
-
+    end:
+}
 }
 
 ?>

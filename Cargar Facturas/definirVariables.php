@@ -7,6 +7,7 @@ $nombre = "";
 $IVA    = "";
 $tablaT = "";
 $total = 0;
+$existe = 0;
 
 $array = array('ID','comprobante','procesamiento','movimiento','TImputacion','TComprobante','NComprobante', 'importe','neto21','neto10y5','neto27','ConcNoAgra','PercIVA','PercDGR','PercMuni','otros');
 
