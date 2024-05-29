@@ -34,7 +34,7 @@ $bas=""; // nombre de la bd
             </datalist>
 
             <br>
-            <form action="GF.php" method="post" class="datos">
+            <form action="GF.php" method="post" class="datos" id="formulario">
 
             <label for="ID">Cliente: </label>
             <input type="text" list='lista' name="ID" id="ID" required>
@@ -164,6 +164,14 @@ if ($_POST) {
     include '../funciones.php';
     include 'definirVariables.php';
 
+    if (isset($_POST['datosPrompt'])) {
+        $datoArray = $_POST['datosPrompt'];
+        $datos = explode(".",$datoArray);
+        $existe = 3;
+        NuevoCliente($datos['0'], $datos['1'],$datos['2']);
+    } else {
+    
+
     $tabla2 = mysqli_query($coneccion, "SELECT IDCliente FROM clientes");
 
     while ($row = mysqli_fetch_array($tabla2)) {
@@ -176,9 +184,30 @@ if ($_POST) {
         }
     }
 
-    if ($existe != 2) {
-        echo "<script src='warning.js'></script>";
-        goto end;
+    if ($existe < 2) {
+            echo 
+                "<script type='text/javascript'>
+                    let decicion = confirm(`Cliente ingresado no registrado, desea registrarlo?`);
+
+                    if (decicion == true) {
+                        let CUIT = prompt(`Ingrese el CUIT del cliente`);
+                        let nombre = prompt(`Ingrese el nombre completo del cliente`);
+                        let IVA = prompt(`Ingrese el IVA: inscripto/monotributista (escríbalo sin mayúsculas)`);
+                    
+                        let datos = CUIT + `.` + nombre + `.` + IVA;
+
+                        var padre = document.getElementById(`formulario`);
+                        var elemento = document.createElement(`input`);
+                    
+                        elemento.setAttribute(`type`,`hidden`);
+                        elemento.setAttribute(`name`,`datosPrompt`);
+                        elemento.setAttribute(`value`, datos);
+                    
+                        padre.appendChild(elemento);
+                    
+                        padre.submit();
+                    }
+                </script>";
     } else {
 
     $tabla2 = mysqli_query($coneccion, "SELECT CUIT, nombre, IVA FROM clientes WHERE IDCliente = $ID");
@@ -208,8 +237,8 @@ if ($_POST) {
 
     mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `NComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `CompVend`, `importe`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `otros`, `total`) 
                                                   VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$CompVend', '$importe', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$otros', '$total')");
-    end:
-}
-}
 
+}
+}
+}
 ?>
