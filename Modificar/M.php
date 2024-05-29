@@ -15,28 +15,10 @@
     <section>
     <br><br><br><br><br><br><br><br><br><br><br>
     
-        <form action="NC.php" method="post" class="datos">
-        <br>
-        <p></p>
-        <label for="CUIT">CUIT: </label>
-        <input type="number" name="CUIT" id="CUIT">       
-        <br><br>
-
-        <label for="nombre">Nombre (Completo): </label>
-        <input type="text" name="nombre" id="nombre"> 
-        <br><br>       
-
-        <label for="IVA">IVA: </label>
-        <select name="IVA" id="IVA">
-            <option value="inscripto">Inscripto</option>
-            <option value="monotributista">Monotributista</option>
-        </select>  
-        <br><br>
-
-        <input type="submit" value="Cargar">
+        <form action="M.php" method="post" class="datos">
 
         </form>
-
+        
         </form>
             <br>
             <form action="" class="datos">
@@ -58,8 +40,5 @@
 </html>
 
 <?php
-include '../funciones.php';
-if ($_POST) {
-    NuevoCliente($_POST['CUIT'], $_POST['nombre'], $_POST['IVA']);
-}
+
 ?>

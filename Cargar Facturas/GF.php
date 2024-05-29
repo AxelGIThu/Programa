@@ -11,7 +11,7 @@ $bas=""; // nombre de la bd
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styleGF.css">
+    <link rel="stylesheet" href="../style/styleGF.css">
     <title>Gen.Facturas</title>
 </head>
 <body>
@@ -25,7 +25,8 @@ $bas=""; // nombre de la bd
         <!--<datalist id=''> 
                 <option value=""></option>
             </datalist>              
-    -->
+        -->
+        
         <article>
             
             <!-- Lista de recomendaciones para los input ID y ID2 (cliente y comprador o vendedor) -->
@@ -185,7 +186,7 @@ if ($_POST) {
     }
 
     if ($existe < 2) {
-            echo 
+            echo
                 "<script type='text/javascript'>
                     let decicion = confirm(`Cliente ingresado no registrado, desea registrarlo?`);
 

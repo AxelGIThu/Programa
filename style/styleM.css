@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    margin: auto;
+    margin: 0;
     background-color: #efefef;
 }
 
@@ -48,24 +48,4 @@ footer a:hover {
 
 section article {
     border: 1cm solid #e1e1e1;
-}
-
-#TArchivo {
-    font-size: 50px;
-}
-
-header h2 {
-    font-size: 2rem;
-    text-align: center;
-    margin: 0;
-}
-
-.subTitulo {
-    font-size: 30px;
-    font-family: "Roboto Mono", monospace;
-}
-
-.texto {
-    font-size: 18px;
-    font-family: "Roboto Mono", monospace;
 }

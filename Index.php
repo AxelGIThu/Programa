@@ -11,7 +11,7 @@ require_once 'BDInicial.sql';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Programa</title>
-    <link rel="stylesheet" href="index CSS/styleIND.css">
+    <link rel="stylesheet" href="style/styleIND.css">
 </head>
 <body>
 
@@ -21,7 +21,7 @@ require_once 'BDInicial.sql';
             <h2>IVA</h2>
         </div>
     </header>
-    <br><br><br><br><br><br><br>
+    <br><br><br>
     <section class="container" id="links">
         
         <article class="center">
@@ -39,9 +39,13 @@ require_once 'BDInicial.sql';
         <article class="center">
             <button><a href="Tabla de Comp.Vent/TCV.php">Tabla Clientes</a></button>
         </article>
+        <br><br><br>
+        <article class="center">
+            <button><a href="Modificar/M.php">Modificar</a></button>
+        </article>
         
     </section>
-    <br><br><br><br><br><br>
+    <br><br><br><br>
     <footer>
         <p>Copyright 2024</p>
         <section>
