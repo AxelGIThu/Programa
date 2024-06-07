@@ -31,7 +31,7 @@ $bas=""; // nombre de la bd
             
             <!-- Lista de recomendaciones para los input ID y ID2 (cliente y comprador o vendedor) -->
             <datalist id="lista">
-                <?php  include 'opcionesID.php'; ?>
+                <?php  include '../funciones.php'; ListaClientes(); ?>
             </datalist>
 
             <br>
@@ -162,7 +162,6 @@ if ($coneccion->connect_errno) {
 
 if ($_POST) {
 
-    include '../funciones.php';
     include 'definirVariables.php';
 
     if (isset($_POST['datosPrompt'])) {

@@ -1,13 +1,17 @@
 <?php
 
+function ConectarLibro() {
+    return $coneccion = mysqli_connect('localhost', 'root', '', 'libro');
+}
+
 function NuevoCliente ($CUIT, $nombre, $IVA) {
 // Permite añadir clientes a la base de datos "clientes".
 
-$mac="localhost"; // servidor
-$usuar="root"; // permisos
-$pass=""; // contraseña
-$bas="libro"; // nombre de la bd
-$coneccion=mysqli_connect($mac, $usuar, $pass, $bas);
+if ($CUIT == null or $nombre == null or $IVA == null) {
+    echo "Alguno de los siguientes datos no fueron ingresados al intentar cargar un cliente: CUIT, IVA, nombre";
+}
+
+$coneccion = ConectarLibro();
 
 /* connect_errno llama/trae el ultimo codigo de error
 puede ser usado para referenciar a un error en caso de que ocurra como acá abajo
@@ -56,13 +60,29 @@ function ContarClientes() {
     // Es usado para la creación de nuevos clientes para la IDCliente.
     
     $CantClientes = 1;
-    $coneccion = mysqli_connect('localhost', 'root', '', 'libro');
+    $coneccion = ConectarLibro();
     $tabla = mysqli_query($coneccion, "SELECT * FROM clientes");
     while ($datos = mysqli_fetch_array($tabla)) {
             $CantClientes++;
         }
     mysqli_close($coneccion);
     return $CantClientes;
+}
+
+function ListaClientes(){
+    $coneccion = ConectarLibro();
+    
+    // Busca el IDCliente, Nombre, CUIT e IVA de todos los clientes
+    $tabla = mysqli_query($coneccion, "SELECT * FROM clientes");
+
+    // Genera una opción por cada cliente, cada una muestra el nombre y cuit del cliente pero el valor de la opcion es la IDCliente.
+    while ($datos = mysqli_fetch_array($tabla)) {
+        ?>
+            <option value="<?php echo $datos['IDCliente'];?>"><?php  echo $datos['nombre'] . " "; echo $datos['CUIT'] ?></option>
+        <?php
+        }
+    
+    mysqli_close($coneccion);
 }
 
 ?>

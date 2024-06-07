@@ -19,15 +19,15 @@
         <br>
         <p></p>
         <label for="CUIT">CUIT: </label>
-        <input type="number" name="CUIT" id="CUIT">       
+        <input type="number" name="CUIT" id="CUIT" required>       
         <br><br>
 
         <label for="nombre">Nombre (Completo): </label>
-        <input type="text" name="nombre" id="nombre"> 
+        <input type="text" name="nombre" id="nombre" required> 
         <br><br>       
 
         <label for="IVA">IVA: </label>
-        <select name="IVA" id="IVA">
+        <select name="IVA" id="IVA" required>
             <option value="inscripto">Inscripto</option>
             <option value="monotributista">Monotributista</option>
         </select>  

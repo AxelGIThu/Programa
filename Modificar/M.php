@@ -3,19 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style/styleNC.css">
-    <title>Nuevo Cliente</title>
+    <link rel="stylesheet" href="../style/styleM.css">
+    <title>Modificar</title>
 </head>
 <body>
     
+<datalist id="lista">
+    <?php  include '../funciones.php'; ListaClientes(); ?>
+</datalist>
+
     <header>
-        <h1>Nuevo Cliente</h1>
+        <h1>Modificar</h1>
     </header>
     
     <section>
     <br><br><br><br><br><br><br><br><br><br><br>
     
-        <form action="M.php" method="post" class="datos">
+        <form action="M-User.php" method="post" class="datos">
+
+        <div>
+            <b><i>En este apartado se le permitira modificar los datos y registros de los clientes registrados.</i></b>
+            <br>
+            <b>Aquí abajo debera ingresar alguna de las opciones que se le presentan.</b>
+            <br>
+            <b>Si no encuentra el cliente que desea, debera cargarlo en el apartado de Nuevo Cliente.</b>
+        </div>
+        <br><br>
+
+        <label for="ID">Cliente: </label>
+        <input type="text" list='lista' name="ID" id="ID" required>
+        <br>
+        <br>
+
+        <button type="submit">Buscar</button>
 
         </form>
         
