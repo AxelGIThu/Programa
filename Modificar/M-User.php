@@ -62,7 +62,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
                 <form action="M-SQL-Script.php" method="post">
                 <td>
                     <input type="text" name="NuevoNombre" required>
-                    <input type="hidden" name="ViejoNombre" value=<?php echo $datosSeleccionados[0]; ?>>
+                    <input type="hidden" name="ViejoNombre" value="<?php echo $datosSeleccionados[0]; ?>">
                     <br>
                     <button type="submit">Modificar</button>
                 </td>
@@ -71,7 +71,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
                 <form action="M-SQL-Script.php" method="post" required>
                 <td>
                     <input type="number" name="NuevoCUIT">
-                    <input type="hidden" name="ViejoNombre" value=<?php echo $datosSeleccionados[1]; ?>>
+                    <input type="hidden" name="ViejoCUIT" value=<?php echo $datosSeleccionados[1]; ?>>
                     <br>
                     <button type="submit">Modificar</button>
                 </td>
@@ -80,7 +80,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
                 <form action="M-SQL-Script.php" method="post" required>
                 <td>
                     <input type="text" name="NuevoIVA">
-                    <input type="hidden" name="ViejoNombre" value=<?php echo $datosSeleccionados[2]; ?>>
+                    <input type="hidden" name="ViejoIVA" value=<?php echo $datosSeleccionados[2]; ?>>
                     <br>
                     <button type="submit">Modificar</button>
                 </td>
