@@ -71,7 +71,7 @@ function ContarClientes() {
 
 function ListaClientes(){
     $coneccion = ConectarLibro();
-    
+
     // Busca el IDCliente, Nombre, CUIT e IVA de todos los clientes
     $tabla = mysqli_query($coneccion, "SELECT * FROM clientes");
 
@@ -83,6 +83,31 @@ function ListaClientes(){
         }
     
     mysqli_close($coneccion);
+}
+
+function ModificarCliente($array){
+    $coneccion = ConectarLibro();
+
+if (isset($array['NuevoNombre'])) {
+    mysqli_query($coneccion, "UPDATE clientes SET nombre = '" . $array['NuevoNombre'] . "' WHERE nombre = '" . $array['ViejoNombre'] . "';");
+}
+
+if (isset($array['NuevoCUIT'])) {
+    mysqli_query($coneccion, "UPDATE clientes SET CUIT = " . $array['NuevoCUIT'] . " WHERE CUIT = " . $array['ViejoCUIT'] . ";");
+}
+
+if (isset($array['NuevoIVA'])) {
+    mysqli_query($coneccion, "UPDATE clientes SET IVA = " . $array['NuevoIVA'] . " WHERE IVA = " . $array['ViejoIVA'] . ";");
+}
+
+mysqli_close($coneccion);
+
+}
+
+function UnsetSessionModificar() {
+    unset($_SESSION['nombre']);
+    unset($_SESSION['CUIT']);
+    unset($_SESSION['IVA']);
 }
 
 ?>
