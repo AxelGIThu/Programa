@@ -1,0 +1,5 @@
+NUEVA FUNCIÓN - MODIFICAR CLIENTES
+	- Poder cambiar los datos del cliente.
+
+NUEVA FUNCIÓN - MODIFICAR FACTURA
+	- Poder modificar un factura.

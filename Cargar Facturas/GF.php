@@ -165,17 +165,30 @@ if ($_POST) {
     include 'definirVariables.php';
 
     if (isset($_POST['datosPrompt'])) {
+
         $datoArray = $_POST['datosPrompt'];
         $datos = explode(".",$datoArray);
         $existe = 3;
-        NuevoCliente($datos['0'], $datos['1'],$datos['2']);
+        $repetido = 0;
+
+        $coneccion = ConectarLibro();
+        $datosVerif = mysqli_query($coneccion, "SELECT nombre FROM clientes");
+        while ($nombreVerif = mysqli_fetch_array($datosVerif)) {
+            if ($nombreVerif[0] == $datos[1]) {
+                $repetido++;
+            }
+        }
+
+        if ($repetido == 0) {
+            NuevoCliente($datos['0'], $datos['1'],$datos['2']);
+        }
+        
     } else {
     
 
     $tabla2 = mysqli_query($coneccion, "SELECT IDCliente FROM clientes");
 
     while ($row = mysqli_fetch_array($tabla2)) {
-        $CompVend = $row[0];
         if ($row[0] == $ID2) {
             $existe++;
         }
@@ -218,6 +231,12 @@ if ($_POST) {
         $IVA = $row[2];
     }
 
+    $tabla2 = mysqli_query($coneccion, "SELECT nombre FROM clientes WHERE IDCliente = $ID2");
+
+    while ($row = mysqli_fetch_array($tabla2)) {
+        $nombre2 = $row[0];
+    }
+
     // Los clientes se identifican por CUIL pero yo lo hago por IDCliente
     // Completar los IF's con papá
     
@@ -230,13 +249,12 @@ if ($_POST) {
         $nombreTabla = "ventas" . $ID_str;
     }
 
-
     include 'IVA.php';
 
     $total=(($neto10y5+$IVA10y5)+($neto21+$IVA21)+($neto27+$IVA27)+$ConcNoAgra+$PercDGR+$PercIVA+$PercMuni+$otros+$importe);
 
     mysqli_query($coneccion, "INSERT INTO `$nombreTabla` (`NFactura`, `comprobante`, `procesamiento`, `TComprobante`, `NComprobante`, `movimiento`, `Timputacion`, `CUIT`, `nombre`, `CompVend`, `importe`, `neto21`, `IVA21`, `neto10y5`, `IVA10y5`, `neto27`, `IVA27`, `ConcNoAgra`, `PercIVA`, `PercDGR`, `PercMuni`, `otros`, `total`) 
-                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$CompVend', '$importe', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$otros', '$total')");
+                                                  VALUES ('', '$comprobante', '$procesamiento', '$TComprobante', '$NComprobante', '$movimiento', '$TImputacion', '$CUIT', '$nombre', '$nombre2', '$importe', '$neto21', '$IVA21', '$neto10y5', '$IVA10y5', '$neto27', '$IVA27', '$ConcNoAgra', '$PercIVA', '$PercDGR', '$PercMuni', '$otros', '$total')");
 
 }
 }

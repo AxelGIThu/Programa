@@ -7,26 +7,14 @@ function ConectarLibro() {
 function NuevoCliente ($CUIT, $nombre, $IVA) {
 // Permite añadir clientes a la base de datos "clientes".
 
+$coneccion = ConectarLibro();
+
 if ($CUIT == null or $nombre == null or $IVA == null) {
     echo "Alguno de los siguientes datos no fueron ingresados al intentar cargar un cliente: CUIT, IVA, nombre";
 }
 
-$coneccion = ConectarLibro();
-
-/* connect_errno llama/trae el ultimo codigo de error
-puede ser usado para referenciar a un error en caso de que ocurra como acá abajo
-*/
-if ($coneccion->connect_errno) {
-    echo "Fallo la conexion " . $coneccion->connect_error;
-}
-
-$count=0;
-
-    // Id se genera de manera peculiar
-    // primer cliente = 1, segundo = 3
-
+    $count=0;
     $count = ContarClientes();
-
     $count2 = $count;
 
     mysqli_query($coneccion, "CREATE TABLE `compras$count` (NFactura int AUTO_INCREMENT PRIMARY KEY ,comprobante date, procesamiento date, TComprobante varchar(50), NComprobante varchar(15), movimiento varchar(50), TImputacion varchar(50), 
@@ -46,10 +34,7 @@ $count=0;
     */
 
     /* Tipo de imputación: Fuente de gasto o ganancia; verduleria, gasolineria, flete, etc */
-
     mysqli_query($coneccion, "INSERT INTO `clientes` (`IDCliente`, `nombre`, `CUIT`, `IVA`) VALUES ('$count2', '$nombre', '$CUIT', '$IVA');");
-
-    //mysqli_query($coneccion, "");
 
     mysqli_close($coneccion);
 
@@ -104,10 +89,9 @@ mysqli_close($coneccion);
 
 }
 
-function UnsetSessionModificar() {
-    unset($_SESSION['nombre']);
-    unset($_SESSION['CUIT']);
-    unset($_SESSION['IVA']);
+function BorrarCache() {
+    $ar = fopen('cache.txt', "w");
+    fclose($ar);
 }
 
 ?>

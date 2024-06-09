@@ -1,28 +1,49 @@
 <?php
 include '../funciones.php';
-session_start();
 
 $coneccion = ConectarLibro();
-$NombreCampos = array('nombre', 'CUIT', 'IVA');
 
-// Si la posicion $_SESSION[ID] esta vacia, le da el valor ingresado en el POST (via $_REQUEST) y guarda el resto de los valores
-if ($_SESSION['ID'] == null) {
+$ar = fopen('cache.txt', "r");
+while (!feof($ar)) {
+    $contenido = fgets($ar);
+}
+fclose($ar);
 
-$_SESSION['ID'] = $_REQUEST['ID'];
+if (filesize('cache.txt') != 0) {
 
-// Trae los datos de los clientes
-$tabla = mysqli_query($coneccion, "SELECT nombre, CUIT, IVA, IDCliente FROM clientes");
+    $arrayContenido = explode(".", $contenido);
 
-// Los guarda en sus respectivas posiciones de la variable global $_SESSION
-while ($datos = mysqli_fetch_array($tabla)) {
-        if ($datos[3] == $_SESSION['ID']) {
-            $_SESSION['nombre'] = $datos['nombre'];
-            $_SESSION['CUIT'] = $datos['CUIT'];
-            $_SESSION['IVA'] = $datos['IVA'];
+} else {
+
+    // Trae los datos de los clientes
+    $tabla = mysqli_query($coneccion, "SELECT nombre, CUIT, IVA, IDCliente FROM clientes");
+
+    // Los guarda en el archivo "cache.txt"
+    while ($datos = mysqli_fetch_array($tabla)) {
+
+        if ($datos[3] == $_REQUEST['ID']) {
+            $nombre = $datos[0];
+            $CUIT = $datos[1];
+            $IVA = $datos[2];
         }
+
     }
 
+    $ar = fopen('cache.txt', "a");
+    fputs($ar, $nombre . "." . $CUIT . "." . $IVA);
+    fclose($ar);
+
+    $ar = fopen('cache.txt', "r");
+    while (!feof($ar)) {
+        $contenido = fgets($ar);
+    }
+    fclose($ar);
+
+    // Separa los contenidos del archivo para poder ser mostrados en la pagina
+    $arrayContenido = explode(".", $contenido);
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +57,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
 <body>
 
     <header>
-        <h1><?php echo $_SESSION['nombre']; ?></h1>
+        <h1><?php echo $arrayContenido[0]; ?></h1>
     </header>
     
     <section>
@@ -53,7 +74,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
                 <?php
                 
                 for ($i=0; $i < 3; $i++) { 
-                    echo "<td>" . $_SESSION[$NombreCampos[$i]] . "</td>";
+                    echo "<td>" . $arrayContenido[$i] . "</td>";
                 }
                 
                 ?>
@@ -72,7 +93,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
                 <form action="M-User.php" method="post">
                 <td>
                     <input type="text" name="NuevoNombre" required>
-                    <input type="hidden" name="ViejoNombre" value="<?php echo $_SESSION['nombre']; ?>">
+                    <input type="hidden" name="ViejoNombre" value="<?php echo $arrayContenido[0]; ?>">
                     <br>
                     <button type="submit" onclick= <?php ModificarCliente($_REQUEST); ?> >Modificar</button>
                 </td>
@@ -81,18 +102,18 @@ while ($datos = mysqli_fetch_array($tabla)) {
                 <form action="M-User.php" method="post" required>
                 <td>
                     <input type="number" name="NuevoCUIT">
-                    <input type="hidden" name="ViejoCUIT" value=<?php echo $_SESSION['CUIT']; ?>>
+                    <input type="hidden" name="ViejoCUIT" value=<?php echo $arrayContenido[1]; ?>>
                     <br>
-                    <button type="submit">Modificar</button>
+                    <button type="submit" onclick= <?php ModificarCliente($_REQUEST); ?> >Modificar</button>
                 </td>
                 </form>
 
                 <form action="M-User.php" method="post" required>
                 <td>
                     <input type="text" name="NuevoIVA">
-                    <input type="hidden" name="ViejoIVA" value=<?php echo $_SESSION['IVA']; ?>>
+                    <input type="hidden" name="ViejoIVA" value=<?php echo $arrayContenido[2]; ?>>
                     <br>
-                    <button type="submit">Modificar</button>
+                    <button type="submit" onclick= <?php ModificarCliente($_REQUEST); ?> >Modificar</button>
                 </td>
                 </form>
 
@@ -102,7 +123,7 @@ while ($datos = mysqli_fetch_array($tabla)) {
         </form>
             <br>
             <form action="" class="datos">
-            <button><a href="M.php" onclick=    <?php UnsetSessionModificar();?>    >Volver</a></button>
+            <button><a href="M.php" onclick=<?php BorrarCache(); ?>>Volver</a></button>
         </form>
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -118,9 +139,3 @@ while ($datos = mysqli_fetch_array($tabla)) {
 
 </body>
 </html>
-
-<?php
-
-session_destroy();
-
-?>
