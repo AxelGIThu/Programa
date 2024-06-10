@@ -1,3 +1,13 @@
+<?php
+
+session_start();
+$_SESSION['ID'] = 0;
+$_SESSION['nombre'] = "";
+$_SESSION['CUIT'] = "";
+$_SESSION['IVA'] = "";
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +19,10 @@
 <body>
     
 <datalist id="lista">
-    <?php  include '../funciones.php'; ListaClientes(); ?>
+    <?php  
+    include '../funciones.php'; 
+    ListaClientes();
+    ?>
 </datalist>
 
     <header>
@@ -32,6 +45,14 @@
 
         <label for="ID">Cliente: </label>
         <input type="text" list='lista' name="ID" id="ID" required>
+        <br>
+        <br>
+
+        <label for="ID">Que tipo de cambio desea realizar </label><br>
+        <select name="TipoCambio">
+            <option value="1">Cliente</option>
+            <option value="2">Registro</option>
+        </select>
         <br>
         <br>
 

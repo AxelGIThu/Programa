@@ -1,8 +1,28 @@
 <?php
 include '../funciones.php';
 
+$columnas = array("nombre", "CUIT", "IVA");
 $coneccion = ConectarLibro();
+session_start();
 
+if ($_SESSION['ID'] == 0) {
+    $_SESSION['ID'] = $_REQUEST['ID'];
+}
+
+$tabla = mysqli_query($coneccion, "SELECT nombre, CUIT, IVA, IDCliente FROM clientes");
+
+while ($datos = mysqli_fetch_array($tabla)) {
+
+    if ($datos[3] == $_SESSION['ID']) {
+        $_SESSION['nombre'] = $datos[0];
+        $_SESSION['CUIT'] = $datos[1];
+        $_SESSION['IVA'] = $datos[2];
+    }
+
+}
+
+
+/*
 $ar = fopen('cache.txt', "r");
 while (!feof($ar)) {
     $contenido = fgets($ar);
@@ -43,7 +63,7 @@ if (filesize('cache.txt') != 0) {
     $arrayContenido = explode(".", $contenido);
 
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -57,12 +77,13 @@ if (filesize('cache.txt') != 0) {
 <body>
 
     <header>
-        <h1><?php echo $arrayContenido[0]; ?></h1>
+        <h1><?php echo $_SESSION['nombre']; ?></h1>
     </header>
     
     <section>
     <br><br><br><br><br><br><br><br><br><br><br>
     <center>
+        <h2>Datos del Cliente</h2>
         <table border="1">
             <tr>
                 <td>Nombre</td>
@@ -74,7 +95,7 @@ if (filesize('cache.txt') != 0) {
                 <?php
                 
                 for ($i=0; $i < 3; $i++) { 
-                    echo "<td>" . $arrayContenido[$i] . "</td>";
+                    echo "<td>" . $_SESSION[$columnas[$i]] . "</td>";
                 }
                 
                 ?>
@@ -93,7 +114,7 @@ if (filesize('cache.txt') != 0) {
                 <form action="M-User.php" method="post">
                 <td>
                     <input type="text" name="NuevoNombre" required>
-                    <input type="hidden" name="ViejoNombre" value="<?php echo $arrayContenido[0]; ?>">
+                    <input type="hidden" name="ViejoNombre" value="<?php echo $_SESSION['nombre']; ?>">
                     <br>
                     <button type="submit" onclick= <?php ModificarCliente($_REQUEST); ?> >Modificar</button>
                 </td>
@@ -102,7 +123,7 @@ if (filesize('cache.txt') != 0) {
                 <form action="M-User.php" method="post" required>
                 <td>
                     <input type="number" name="NuevoCUIT">
-                    <input type="hidden" name="ViejoCUIT" value=<?php echo $arrayContenido[1]; ?>>
+                    <input type="hidden" name="ViejoCUIT" value=<?php echo $_SESSION['CUIT']; ?>>
                     <br>
                     <button type="submit" onclick= <?php ModificarCliente($_REQUEST); ?> >Modificar</button>
                 </td>
@@ -110,8 +131,11 @@ if (filesize('cache.txt') != 0) {
 
                 <form action="M-User.php" method="post" required>
                 <td>
-                    <input type="text" name="NuevoIVA">
-                    <input type="hidden" name="ViejoIVA" value=<?php echo $arrayContenido[2]; ?>>
+                    <select name="NuevoIVA">
+                        <option value="inscripto">Inscripto</option>
+                        <option value="monotributista">Monotributista</option>
+                    </select>
+                    <input type="hidden" name="ViejoIVA" value=<?php echo $_SESSION['IVA']; ?>>
                     <br>
                     <button type="submit" onclick= <?php ModificarCliente($_REQUEST); ?> >Modificar</button>
                 </td>
@@ -119,11 +143,14 @@ if (filesize('cache.txt') != 0) {
 
             </tr>
         </table>
+
+        <p><b>Importante<br>Si modifica alguno de los datos, para poder verlos en esta misma pagina debera actualizarla (F5)</b></p>
+
     </center>
         </form>
             <br>
             <form action="" class="datos">
-            <button><a href="M.php" onclick=<?php BorrarCache(); ?>>Volver</a></button>
+            <button><a href="M.php">Volver</a></button>
         </form>
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br>
