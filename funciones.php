@@ -90,9 +90,14 @@ mysqli_close($coneccion);
 
 }
 
-function BorrarCache() {
-    $ar = fopen('cache.txt', "w");
-    fclose($ar);
+function CrearTDparaModif($campo, $ValorViejo) {
+    echo "<form action='M-Registro.php' method='post'>";
+    echo    "<td>";
+    echo        '<input type="text" name="Nuevo' . $campo . '" required>';
+    echo        '<input type="hidden" name="Viejo' . $campo . '" value="' . $ValorViejo . '">';
+    echo        '<br><button type="submit" onclick=' . ModificarCliente($_REQUEST) . '>Modificar</button>';
+    echo    "</td>";
+    echo "</form>";
 }
 
 ?>

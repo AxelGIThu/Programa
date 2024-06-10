@@ -3,7 +3,7 @@
 if ($_REQUEST['TipoCambio'] == 1) {
     include 'M-Usuario.php';
 } else {
-    include 'M-Registro.php';
+    include 'Elegir-Registro.php';
 }
 
 ?>
