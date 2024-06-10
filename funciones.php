@@ -82,7 +82,8 @@ if (isset($array['NuevoCUIT'])) {
 }
 
 if (isset($array['NuevoIVA'])) {
-    mysqli_query($coneccion, "UPDATE clientes SET IVA = " . $array['NuevoIVA'] . " WHERE IVA = " . $array['ViejoIVA'] . ";");
+    // Las comillas simples indican que el valor es un texto, caso contrario la query falla porque lo identifica como columna y no lo encuentro.
+    mysqli_query($coneccion, "UPDATE clientes SET IVA = '" . $array['NuevoIVA'] . "' WHERE IVA = '" . $array['ViejoIVA'] . "';");
 }
 
 mysqli_close($coneccion);

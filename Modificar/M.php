@@ -32,7 +32,7 @@ $_SESSION['IVA'] = "";
     <section>
     <br><br><br><br><br><br><br><br><br><br><br>
     
-        <form action="M-User.php" method="post" class="datos">
+        <form action="M-Lobby.php" method="post" class="datos">
 
         <div>
             <b><i>En este apartado se le permitira modificar los datos y registros de los clientes registrados.</i></b>

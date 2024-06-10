@@ -111,7 +111,7 @@ if (filesize('cache.txt') != 0) {
 
             <tr>
 
-                <form action="M-User.php" method="post">
+                <form action="M-Usuario.php" method="post">
                 <td>
                     <input type="text" name="NuevoNombre" required>
                     <input type="hidden" name="ViejoNombre" value="<?php echo $_SESSION['nombre']; ?>">
@@ -120,7 +120,7 @@ if (filesize('cache.txt') != 0) {
                 </td>
                 </form>
 
-                <form action="M-User.php" method="post" required>
+                <form action="M-Usuario.php" method="post" required>
                 <td>
                     <input type="number" name="NuevoCUIT">
                     <input type="hidden" name="ViejoCUIT" value=<?php echo $_SESSION['CUIT']; ?>>
@@ -129,7 +129,7 @@ if (filesize('cache.txt') != 0) {
                 </td>
                 </form>
 
-                <form action="M-User.php" method="post" required>
+                <form action="M-Usuario.php" method="post" required>
                 <td>
                     <select name="NuevoIVA">
                         <option value="inscripto">Inscripto</option>
