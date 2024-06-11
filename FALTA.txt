@@ -1,5 +1,2 @@
 NUEVA FUNCIÓN - MODIFICAR FACTURA
 	- Poder modificar una factura.
-
-TABLA DE REGISTROS
-	- Actualizarla; CompVend.
