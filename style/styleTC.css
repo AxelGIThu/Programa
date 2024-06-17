@@ -1,0 +1,71 @@
+html {
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    margin: auto;
+    background-color: #efefef;
+}
+
+header {
+    background-color: #364552;
+    color: white;
+    padding: 0.5rem 0.25rem;
+}
+
+header h1 {
+    font-size: 4rem;
+    text-align: center;
+}
+
+footer {
+    background-color: #222;
+    padding: 3rem;
+    color: #fff;
+}
+
+footer section {
+    float: right;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    transition: color 0.3s ease;
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: cornflowerblue;
+}
+
+.datos {
+    text-align: center;
+}
+
+section article {
+    border: 1cm solid #e1e1e1;
+}
+
+#TArchivo {
+    font-size: 50px;
+}
+
+header h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.subTitulo {
+    font-size: 30px;
+    font-family: "Roboto Mono", monospace;
+}
+
+.texto {
+    font-size: 18px;
+    font-family: "Roboto Mono", monospace;
+}

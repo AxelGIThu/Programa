@@ -22,48 +22,6 @@ while ($datos = mysqli_fetch_array($tabla)) {
 
 }
 
-/*
-$ar = fopen('cache.txt', "r");
-while (!feof($ar)) {
-    $contenido = fgets($ar);
-}
-fclose($ar);
-
-if (filesize('cache.txt') != 0) {
-
-    $arrayContenido = explode(".", $contenido);
-
-} else {
-
-    // Trae los datos de los clientes
-    $tabla = mysqli_query($coneccion, "SELECT nombre, CUIT, IVA, IDCliente FROM clientes");
-
-    // Los guarda en el archivo "cache.txt"
-    while ($datos = mysqli_fetch_array($tabla)) {
-
-        if ($datos[3] == $_REQUEST['ID']) {
-            $nombre = $datos[0];
-            $CUIT = $datos[1];
-            $IVA = $datos[2];
-        }
-
-    }
-
-    $ar = fopen('cache.txt', "a");
-    fputs($ar, $nombre . "." . $CUIT . "." . $IVA);
-    fclose($ar);
-
-    $ar = fopen('cache.txt', "r");
-    while (!feof($ar)) {
-        $contenido = fgets($ar);
-    }
-    fclose($ar);
-
-    // Separa los contenidos del archivo para poder ser mostrados en la pagina
-    $arrayContenido = explode(".", $contenido);
-
-}
-*/
 ?>
 
 <!DOCTYPE html>
@@ -92,8 +50,10 @@ if (filesize('cache.txt') != 0) {
         <fieldset style="width: fit-content;">
             <legend><b>¿Que registro desea modificar?</b></legend>
             <br>
-            <label for="NFactura"><b>Ingrese el numero de la factura que desee modificar</b></label><br>
-            <input type="number" name="NFactura">
+            <label for="NFidentificador"><b>Ingrese el numero de la factura que desee modificar</b></label><br>
+            <input type="number" name="NFidentificador">
+            <input type="hidden" value=<?php echo $_SESSION['IDCliente'];?> name="IDCliente">
+            <input type="hidden" value=<?php echo $_REQUEST['CoV'];?> name="CoV">
             <br><br>
 
             <p><b>Chekee los campos que desea modificar</b></p>
@@ -166,6 +126,7 @@ if (filesize('cache.txt') != 0) {
             $ValIni = str_replace("-","",$inicio);
 
             $resultado = mysqli_query($coneccion, "SELECT * FROM $nombreTabla WHERE comprobante BETWEEN $ValIni AND $ValFin");
+            mysqli_close($coneccion);
 
         echo "<table border='1' style='margin: 0 auto;'>";
         
@@ -178,9 +139,6 @@ if (filesize('cache.txt') != 0) {
             foreach ($arrayForeach as $nombreDato) { 
                 echo "<th><h5>". $nombreDato . "</h5></th>";
             }
-            // foreach ($arrayWhile as $nombreDato) { 
-            //     echo "<th><h5>". $nombreDato . "</h5></th>";
-            // }
         echo "</tr>";
         
         // Poblando la tabla
@@ -189,9 +147,7 @@ if (filesize('cache.txt') != 0) {
             for ($i=0; $i < count($dato); $i++) { 
                 echo "<th><h5>". $dato[$i] . "</h5></th>";
             }
-            // foreach ($arrayForeach as $nombreDato) { 
-            //     echo "<th><h5>". $dato[$nombreDato] . "</h5></th>";
-            // }
+
             echo "</tr>";
         }
         echo "</table>";
@@ -206,6 +162,9 @@ if (filesize('cache.txt') != 0) {
             <br>
             <legend>¿Que registros quiere poder modificar?</legend>
             <form action="Elegir-Registro.php" method="post">
+
+            <input type='hidden' name='ID' value=<?php echo "'" . $_SESSION['ID'] . "'"?>>
+
             <label for="CoV">Compra o Venta: </label>
             <select name="CoV" id="CoV" required>
                 <option value="compras">Compras</option>

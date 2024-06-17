@@ -1,4 +1,0 @@
-MODIFICAR
-En resumen, tengo que lograr mandar el valor que esta en la base de datos a el archivo elegir registro.
-
-no cualquier valor sino que solo los que estan elegidos y luego utilizarlo en junto con $campo en la funcion CrearTDparaModif().

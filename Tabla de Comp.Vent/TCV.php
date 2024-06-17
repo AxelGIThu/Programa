@@ -10,7 +10,7 @@
     <!-- Falta agregar filtros por fecha en vez de NFactura -->
     <!-- Falta poder seleccionar que filas ver en la tabla -->
     <header>
-        <h1>Tabla Clientes</h1>
+        <h1>Tabla Registros</h1>
     </header>
 
     <section>
@@ -64,8 +64,6 @@
             <input type="checkbox" name="CUIT" id="CUIT" checked>
             <label for="nombre">Nombre</label>
             <input type="checkbox" name="nombre" id="nombre" checked>
-            <label for="nombre">CompVend</label>
-            <input type="checkbox" name="CompVend" id="CompVend" checked>
             <label for="importe">Importe</label>
             <input type="checkbox" name="importe" id="importe" checked>
             <br>

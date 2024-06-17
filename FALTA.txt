@@ -1,2 +1,0 @@
-NUEVA FUNCIÓN - MODIFICAR FACTURA
-	- Poder modificar una factura.

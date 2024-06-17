@@ -31,7 +31,7 @@ $_SESSION['IVA'] = "";
     
     <section>
     <br><br><br><br><br><br><br><br><br><br><br>
-    
+        
         <form action="M-Lobby.php" method="post" class="datos">
 
         <div>

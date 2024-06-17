@@ -72,32 +72,26 @@ function ListaClientes(){
 
 function ModificarCliente($array){
     $coneccion = ConectarLibro();
+    if (isset($array['NuevoNombre'])) {
+        mysqli_query($coneccion, "UPDATE clientes SET nombre = '" . $array['NuevoNombre'] . "' WHERE nombre = '" . $array['ViejoNombre'] . "';");
+    }
 
-if (isset($array['NuevoNombre'])) {
-    mysqli_query($coneccion, "UPDATE clientes SET nombre = '" . $array['NuevoNombre'] . "' WHERE nombre = '" . $array['ViejoNombre'] . "';");
+    if (isset($array['NuevoCUIT'])) {
+        mysqli_query($coneccion, "UPDATE clientes SET CUIT = " . $array['NuevoCUIT'] . " WHERE CUIT = " . $array['ViejoCUIT'] . ";");
+    }
+
+    if (isset($array['NuevoIVA'])) {
+        // Las comillas simples indican que el valor es un texto, caso contrario la query falla porque lo identifica como columna y no lo encuentro.
+        mysqli_query($coneccion, "UPDATE clientes SET IVA = '" . $array['NuevoIVA'] . "' WHERE IVA = '" . $array['ViejoIVA'] . "';");
+    }
+
+    mysqli_close($coneccion);
+
 }
 
-if (isset($array['NuevoCUIT'])) {
-    mysqli_query($coneccion, "UPDATE clientes SET CUIT = " . $array['NuevoCUIT'] . " WHERE CUIT = " . $array['ViejoCUIT'] . ";");
-}
-
-if (isset($array['NuevoIVA'])) {
-    // Las comillas simples indican que el valor es un texto, caso contrario la query falla porque lo identifica como columna y no lo encuentro.
-    mysqli_query($coneccion, "UPDATE clientes SET IVA = '" . $array['NuevoIVA'] . "' WHERE IVA = '" . $array['ViejoIVA'] . "';");
-}
-
-mysqli_close($coneccion);
-
-}
-
-function CrearTDparaModif($campo, $ValorViejo) {
-    echo "<form action='M-Registro.php' method='post'>";
-    echo    "<td>";
-    echo        '<input type="text" name="Nuevo' . $campo . '" required>';
-    echo        '<input type="hidden" name="Viejo' . $campo . '" value="' . $ValorViejo . '">';
-    echo        '<br><button type="submit" onclick=' . ModificarCliente($_REQUEST) . '>Modificar</button>';
-    echo    "</td>";
-    echo "</form>";
+function ModificarRegistro($NombreTabla, $campo, $ValorViejo, $ValorNuevo) {
+    $coneccion = ConectarLibro();
+    mysqli_query($coneccion, "UPDATE $NombreTabla SET $campo = $ValorNuevo WHERE $campo = $ValorViejo;");
 }
 
 ?>

@@ -27,18 +27,27 @@ require_once 'BDInicial.sql';
         <article class="center">
             <button><a href="Cargar Facturas/GF.php">Cargar Factura</a></button>
         </article>
+
         <br><br><br>
         <article class="center">
             <button><a href="Nuevo Cliente/NC.php">Nuevo Cliente</a></button>
         </article>
+
         <br><br><br>
         <article class="center">
             <button><a href="Generar Archivo/GA.php">Generar Archivos</a></button>
         </article>
+
         <br><br><br>
         <article class="center">
-            <button><a href="Tabla de Comp.Vent/TCV.php">Tabla Clientes</a></button>
+            <button><a href="Tabla Clientes/TC.php">Tabla Clientes</a></button>
         </article>
+
+        <br><br><br>
+        <article class="center">
+            <button><a href="Tabla de Comp.Vent/TCV.php">Tabla Registros</a></button>
+        </article>
+
         <br><br><br>
         <article class="center">
             <button><a href="Modificar/M.php">Modificar</a></button>
