@@ -3,4 +3,4 @@ print(type(resultado))
 numero = int(resultado)
 str(22)
 float("22.13")
-bool("un string")
+print(bool("un string")) # si esta vacio devuelve false
