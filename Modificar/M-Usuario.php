@@ -20,50 +20,6 @@ while ($datos = mysqli_fetch_array($tabla)) {
     }
 
 }
-
-
-/*
-$ar = fopen('cache.txt', "r");
-while (!feof($ar)) {
-    $contenido = fgets($ar);
-}
-fclose($ar);
-
-if (filesize('cache.txt') != 0) {
-
-    $arrayContenido = explode(".", $contenido);
-
-} else {
-
-    // Trae los datos de los clientes
-    $tabla = mysqli_query($coneccion, "SELECT nombre, CUIT, IVA, IDCliente FROM clientes");
-
-    // Los guarda en el archivo "cache.txt"
-    while ($datos = mysqli_fetch_array($tabla)) {
-
-        if ($datos[3] == $_REQUEST['ID']) {
-            $nombre = $datos[0];
-            $CUIT = $datos[1];
-            $IVA = $datos[2];
-        }
-
-    }
-
-    $ar = fopen('cache.txt', "a");
-    fputs($ar, $nombre . "." . $CUIT . "." . $IVA);
-    fclose($ar);
-
-    $ar = fopen('cache.txt', "r");
-    while (!feof($ar)) {
-        $contenido = fgets($ar);
-    }
-    fclose($ar);
-
-    // Separa los contenidos del archivo para poder ser mostrados en la pagina
-    $arrayContenido = explode(".", $contenido);
-
-}
-*/
 ?>
 
 <!DOCTYPE html>
