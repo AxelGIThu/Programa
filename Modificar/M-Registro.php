@@ -32,7 +32,6 @@ while ($datos = mysqli_fetch_array($tabla)) {
 $NFactura = $_SESSION['NFidentificador'];
 $nombreTabla = $_SESSION['nombreTabla'];
 
-
 $resultado = mysqli_query($coneccion, "SELECT * FROM $nombreTabla WHERE NFactura = $NFactura");
 
 mysqli_close($coneccion);
@@ -101,7 +100,9 @@ mysqli_close($coneccion);
         echo "</tr>";
 
         echo "<tr>";
+
         foreach ($arrayWhile as $nombreDato) {
+            
             if(gettype($dato[$nombreDato]) == "integer" or gettype($dato[$nombreDato]) == "double") {
             echo "
                 <td>
