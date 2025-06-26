@@ -91,7 +91,7 @@ function ModificarCliente($array){
 
 function ModificarRegistro($NombreTabla, $campo, $ValorViejo, $ValorNuevo) {
     $coneccion = ConectarLibro();
-    mysqli_query($coneccion, "UPDATE $NombreTabla SET $campo = $ValorNuevo WHERE $campo = $ValorViejo;");
+    mysqli_query($coneccion, "UPDATE ".$NombreTabla." SET ".$campo." = '".$ValorNuevo."' WHERE ".$campo." = '".$ValorViejo."';");
 }
 
 ?>

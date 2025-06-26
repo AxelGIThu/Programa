@@ -28,11 +28,13 @@ ModificarRegistro($_SESSION['nombreTabla'], $_REQUEST['campo'], $_REQUEST['Valor
             Su modificación ha sido realizada con exito.
         </fieldset>
     <br><br></center>
-        </form>
+        <!-- </form>
             <br>
-            <form action="" class="datos">
+            <form action="" class="datos"> -->
+                <center>
             <button><a href="M.php">Volver</a></button>
-        </form>
+            </center>
+        <!-- </form> -->
     <br><br>
     </section>
 
